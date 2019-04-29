@@ -19,3 +19,17 @@ namespace Scott
 	};
 }
 
+
+// Core Log Macros
+#define SC_CORE_TRACE(...)	::Scott::Log::GetCoreLogger()->trace(__VA_ARGS__);
+#define SC_CORE_INFO(...)	::Scott::Log::GetCoreLogger()->info(__VA_ARGS__);
+#define SC_CORE_WARN(...)	::Scott::Log::GetCoreLogger()->warn(__VA_ARGS__);
+#define SC_CORE_ERROR(...)	::Scott::Log::GetCoreLogger()->error(__VA_ARGS__);
+#define SC_CORE_FATAL(...)	::Scott::Log::GetCoreLogger()->fatal(__VA_ARGS__);
+
+// Client Log Macros
+#define SC_TRACE(...)		::Scott::Log::GetCoreLogger()->trace(__VA_ARGS__);
+#define SC_INFO(...)		::Scott::Log::GetCoreLogger()->info(__VA_ARGS__);
+#define SC_WARN(...)		::Scott::Log::GetCoreLogger()->warn(__VA_ARGS__);
+#define SC_ERROR(...)		::Scott::Log::GetCoreLogger()->error(__VA_ARGS__);
+#define SC_FATAL(...)		::Scott::Log::GetCoreLogger()->fatal(__VA_ARGS__);
