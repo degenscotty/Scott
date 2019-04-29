@@ -17,8 +17,7 @@ namespace Scott
 	void Application::Run()
 	{
 		WindowResizeEvent e(1280, 720);
-		SC_TRACE(e.ToString());
-
+		SC_TRACE(e);
 
 		while (true);
 	}

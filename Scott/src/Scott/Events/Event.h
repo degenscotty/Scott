@@ -81,6 +81,5 @@ namespace Scott {
 	{
 		return os << e.ToString();
 	}
-
 }
 
