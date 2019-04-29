@@ -1,3 +1,4 @@
+#include "scpch.h"
 #include "Application.h"
 
 #include "Scott/Events/ApplicationEvent.h"

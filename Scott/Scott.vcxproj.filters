@@ -34,6 +34,7 @@
     <ClInclude Include="src\Scott\Log.h">
       <Filter>Scott</Filter>
     </ClInclude>
+    <ClInclude Include="src\scpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Scott\Application.cpp">
@@ -42,5 +43,6 @@
     <ClCompile Include="src\Scott\Log.cpp">
       <Filter>Scott</Filter>
     </ClCompile>
+    <ClCompile Include="src\scpch.cpp" />
   </ItemGroup>
 </Project>

@@ -2,9 +2,6 @@
 
 #include "Scott/Core.h"
 
-#include <string>
-#include <functional>
-
 namespace Scott {
 
 	// Events are currently blocking, meaning when an event occurs it

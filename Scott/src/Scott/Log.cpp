@@ -1,3 +1,4 @@
+#include "scpch.h"
 #include "Log.h"
 
 namespace Scott

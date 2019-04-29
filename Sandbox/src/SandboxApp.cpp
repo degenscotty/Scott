@@ -1,4 +1,4 @@
-
+#include "scpch.h"
 #include <Scott.h>
 
 class Sandbox : public Scott::Application
