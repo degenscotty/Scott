@@ -31,7 +31,17 @@ project "Scott"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"3rdParty/SDL2_ttf/include",
+		"3rdParty/SDL2_image/include",
+		"3rdParty/SDL2/include"
+	}
+	
+	libdirs
+	{
+		"3rdParty/SDL2_ttf/lib/x64",
+		"3rdParty/SDL2_image/lib/x64",
+		"3rdParty/SDL2/lib/x64"
 	}
 	
 	filter "system:windows"
@@ -79,7 +89,17 @@ project "Sandbox"
 	includedirs
 	{
 		"Scott/vendor/spdlog/include",
-		"Scott/src"
+		"Scott/src",
+		"3rdParty/SDL2_ttf/include",
+		"3rdParty/SDL2_image/include",
+		"3rdParty/SDL2/include"
+	}
+	
+	libdirs
+	{
+		"3rdParty/SDL2_ttf/lib/x64",
+		"3rdParty/SDL2_image/lib/x64",
+		"3rdParty/SDL2/lib/x64"
 	}
 
 	links

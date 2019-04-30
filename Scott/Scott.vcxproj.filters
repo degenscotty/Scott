@@ -35,6 +35,7 @@
       <Filter>Scott</Filter>
     </ClInclude>
     <ClInclude Include="src\scpch.h" />
+    <ClInclude Include="src\Scott\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Scott\Application.cpp">
