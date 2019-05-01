@@ -13,9 +13,9 @@ namespace Scott {
 		unsigned int Width;
 		unsigned int Height;
 
-		WindowProps(const std::string& title = "Hazel Engine",
-			        unsigned int width = 1280,
-			        unsigned int height = 720)
+		WindowProps(const std::string& title = "Scott Engine",
+			unsigned int width = 1280,
+			unsigned int height = 720)
 			: Title(title), Width(width), Height(height)
 		{
 		}
@@ -27,7 +27,9 @@ namespace Scott {
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;
 
-		virtual ~Window() {}
+		Window() = default;
+
+		virtual ~Window() {};
 
 		virtual void OnUpdate() = 0;
 

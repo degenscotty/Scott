@@ -36,6 +36,7 @@
     </ClInclude>
     <ClInclude Include="src\scpch.h" />
     <ClInclude Include="src\Scott\Window.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Scott\Application.cpp">
@@ -45,5 +46,6 @@
       <Filter>Scott</Filter>
     </ClCompile>
     <ClCompile Include="src\scpch.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
 </Project>

@@ -8,6 +8,7 @@ namespace Scott
 {
 	Application::Application()
 	{
+		m_pWindow = std::make_unique<Window>(Window::Create());
 	}
 
 
@@ -17,9 +18,9 @@ namespace Scott
 
 	void Application::Run()
 	{
-		WindowResizeEvent e(1280, 720);
-		SC_TRACE(e);
-
-		while (true);
+		while (m_Running)
+		{
+			m_pWindow->OnUpdate();
+		}
 	}
 }
