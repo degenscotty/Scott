@@ -27,8 +27,6 @@ namespace Scott {
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;
 
-		Window() = default;
-
 		virtual ~Window() {};
 
 		virtual void OnUpdate() = 0;

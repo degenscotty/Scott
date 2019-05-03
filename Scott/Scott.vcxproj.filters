@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>Platform\Windows</Filter>
-    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -50,11 +47,10 @@
       <Filter>Scott</Filter>
     </ClInclude>
     <ClInclude Include="src\scpch.h" />
+    <ClInclude Include="src\Scott\LayerStack.h" />
+    <ClInclude Include="src\Scott\Layer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
-      <Filter>Platform\Windows</Filter>
-    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
@@ -65,5 +61,7 @@
       <Filter>Scott</Filter>
     </ClCompile>
     <ClCompile Include="src\scpch.cpp" />
+    <ClCompile Include="src\Scott\LayerStack.cpp" />
+    <ClCompile Include="src\Scott\Layer.cpp" />
   </ItemGroup>
 </Project>

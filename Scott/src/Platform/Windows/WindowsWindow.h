@@ -4,7 +4,7 @@
 
 namespace Scott {
 
-	class WindowsWindow final : public Window
+	class SCOTT_API WindowsWindow final : public Window
 	{
 	public:
 		WindowsWindow(const WindowProps& props);

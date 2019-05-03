@@ -62,14 +62,17 @@ project "Scott"
 		
 	filter "configurations:Debug"
 		defines "SC_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 		
 	filter "configurations:Release"
 		defines "SC_RELEASE"
+		buildoptions "/MD"
 		symbols "On"
 		
 	filter "configurations:Dist"
 		defines "SC_DIST"
+		buildoptions "/MD"
 		symbols "On"
 
 project "Sandbox"
@@ -119,12 +122,15 @@ project "Sandbox"
 		
 	filter "configurations:Debug"
 		defines "SC_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 		
 	filter "configurations:Release"
 		defines "SC_RELEASE"
+		buildoptions "/MD"
 		symbols "On"
 		
 	filter "configurations:Dist"
 		defines "SC_DIST"
+		buildoptions "/MD"
 		symbols "On"

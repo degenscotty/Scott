@@ -49,7 +49,8 @@ namespace Scott
 			SDL_WINDOWPOS_UNDEFINED,
 			(int)props.Width,
 			(int)props.Height,
-			SDL_WINDOW_OPENGL);
+			SDL_WINDOW_OPENGL |
+			SDL_WINDOW_RESIZABLE);
 
 		if (m_pWindow == nullptr)
 		{
@@ -77,27 +78,55 @@ namespace Scott
 	{
 		if (SDL_PollEvent(&e) != 0)
 		{
+			WindowData& data = m_Data;
+
 			// Handle the polled event
 			switch (e.type)
 			{
 			case SDL_QUIT:
-
-				break;
+			{
+				WindowCloseEvent event{};
+				data.EventCallback(event);
+			}
+			break;
 			case SDL_KEYDOWN:
-
-				break;
+			{
+				if (e.key.repeat != 0)
+				{
+					KeyPressedEvent event(e.key.keysym.scancode, 1);
+					data.EventCallback(event);
+				}
+				else
+				{
+					KeyPressedEvent event(e.key.keysym.scancode, 0);
+					data.EventCallback(event);
+				}
+			}
+			break;
 			case SDL_KEYUP:
-
-				break;
+			{
+				KeyReleasedEvent event(e.key.keysym.scancode);
+				data.EventCallback(event);
+			}
+			break;
 			case SDL_MOUSEMOTION:
-
-				break;
+			{
+				MouseMovedEvent event((float)e.motion.x, (float)e.motion.y);
+				data.EventCallback(event);
+			}
+			break;
 			case SDL_MOUSEBUTTONDOWN:
-
-				break;
+			{
+				MouseButtonPressedEvent event(e.button.button);
+				data.EventCallback(event);
+			}
+			break;
 			case SDL_MOUSEBUTTONUP:
-
-				break;
+			{
+				MouseButtonReleasedEvent event(e.button.button);
+				data.EventCallback(event);
+			}
+			break;
 			}
 		}
 

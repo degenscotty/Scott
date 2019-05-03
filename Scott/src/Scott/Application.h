@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Core.h"
+#include "Scott/Events/ApplicationEvent.h"
+
+
 #include "Window.h"
 
 namespace Scott
@@ -12,7 +15,11 @@ namespace Scott
 		virtual ~Application();
 
 		void Run();
+
+		void OnEvent(Event& e);
 	private:
+		bool OnWindowClosed(WindowCloseEvent& e);
+
 		std::unique_ptr<Window> m_pWindow;
 		bool m_Running = true;
 	};
