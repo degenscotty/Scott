@@ -6,6 +6,7 @@
 #include "Scott/Events/KeyEvent.h"
 
 #include "Scott/Log.h"
+#include "Scott/Input.h"
 
 namespace Scott
 {
@@ -76,60 +77,62 @@ namespace Scott
 
 	void WindowsWindow::OnUpdate()
 	{
-		if (SDL_PollEvent(&e) != 0)
-		{
-			WindowData& data = m_Data;
+		//if (SDL_PollEvent(&e) != 0)
+		//{
+		//	WindowData& data = m_Data;
 
-			// Handle the polled event
-			switch (e.type)
-			{
-			case SDL_QUIT:
-			{
-				WindowCloseEvent event{};
-				data.EventCallback(event);
-			}
-			break;
-			case SDL_KEYDOWN:
-			{
-				if (e.key.repeat != 0)
-				{
-					KeyPressedEvent event(e.key.keysym.scancode, 1);
-					data.EventCallback(event);
-				}
-				else
-				{
-					KeyPressedEvent event(e.key.keysym.scancode, 0);
-					data.EventCallback(event);
-				}
-			}
-			break;
-			case SDL_KEYUP:
-			{
-				KeyReleasedEvent event(e.key.keysym.scancode);
-				data.EventCallback(event);
-			}
-			break;
-			case SDL_MOUSEMOTION:
-			{
-				MouseMovedEvent event((float)e.motion.x, (float)e.motion.y);
-				data.EventCallback(event);
-			}
-			break;
-			case SDL_MOUSEBUTTONDOWN:
-			{
-				MouseButtonPressedEvent event(e.button.button);
-				data.EventCallback(event);
-			}
-			break;
-			case SDL_MOUSEBUTTONUP:
-			{
-				MouseButtonReleasedEvent event(e.button.button);
-				data.EventCallback(event);
-			}
-			break;
-			}
-		}
+		//	// Handle the polled event
+		//	switch (e.type)
+		//	{
+		//	case SDL_QUIT:
+		//	{
+		//		WindowCloseEvent event{};
+		//		data.EventCallback(event);
+		//	}
+		//	break;
+		//	case SDL_KEYDOWN:
+		//	{
+		//		if (e.key.repeat != 0)
+		//		{
+		//			KeyPressedEvent event(e.key.keysym.scancode, 1);
+		//			data.EventCallback(event);
+		//		}
+		//		else
+		//		{
+		//			KeyPressedEvent event(e.key.keysym.scancode, 0);
+		//			data.EventCallback(event);
+		//		}
+		//	}
+		//	break;
+		//	case SDL_KEYUP:
+		//	{
+		//		KeyReleasedEvent event(e.key.keysym.scancode);
+		//		data.EventCallback(event);
+		//	}
+		//	break;
+		//	case SDL_MOUSEMOTION:
+		//	{
+		//		MouseMovedEvent event((float)e.motion.x, (float)e.motion.y);
+		//		data.EventCallback(event);
+		//	}
+		//	break;
+		//	case SDL_MOUSEBUTTONDOWN:
+		//	{
+		//		MouseButtonPressedEvent event(e.button.button);
+		//		data.EventCallback(event);
+		//	}
+		//	break;
+		//	case SDL_MOUSEBUTTONUP:
+		//	{
+		//		MouseButtonReleasedEvent event(e.button.button);
+		//		data.EventCallback(event);
+		//	}
+		//	break;
+		//	}
+		//}
 
+
+		Input::Update();
 		SDL_GL_SwapWindow(m_pWindow);
 	}
 

@@ -11,10 +11,13 @@ workspace "Scott"
 	
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+include "Scott/vendor/imgui"
+
 project "Scott"
 	location "Scott"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "off"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -32,6 +35,7 @@ project "Scott"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
+		"%{prj.name}/vendor/imgui",
 		"3rdParty/SDL2_ttf/include",
 		"3rdParty/SDL2_image/include",
 		"3rdParty/SDL2/include"
@@ -44,9 +48,13 @@ project "Scott"
 		"3rdParty/SDL2/lib/x64"
 	}
 	
+	links
+	{
+		"ImGui"
+	}
+	
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 		
 		defines
@@ -62,23 +70,24 @@ project "Scott"
 		
 	filter "configurations:Debug"
 		defines "SC_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 		
 	filter "configurations:Release"
 		defines "SC_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		symbols "On"
 		
 	filter "configurations:Dist"
 		defines "SC_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		symbols "On"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp" 
 	language "C++"
+	staticruntime "off"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -92,6 +101,7 @@ project "Sandbox"
 	includedirs
 	{
 		"Scott/vendor/spdlog/include",
+		"Scott/vendor/imgui",
 		"Scott/src",
 		"3rdParty/SDL2_ttf/include",
 		"3rdParty/SDL2_image/include",
@@ -104,7 +114,7 @@ project "Sandbox"
 		"3rdParty/SDL2_image/lib/x64",
 		"3rdParty/SDL2/lib/x64"
 	}
-
+	
 	links
 	{
 		"Scott"
@@ -112,7 +122,6 @@ project "Sandbox"
 	
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 		
 		defines
@@ -122,15 +131,15 @@ project "Sandbox"
 		
 	filter "configurations:Debug"
 		defines "SC_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 		
 	filter "configurations:Release"
 		defines "SC_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		symbols "On"
 		
 	filter "configurations:Dist"
 		defines "SC_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		symbols "On"

@@ -30,13 +30,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
+    <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
+    <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
@@ -80,11 +80,10 @@
       <PrecompiledHeaderFile>scpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SC_PLATFORM_WINDOWS;SC_BUILD_DLL;SC_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;..\3rdParty\SDL2_ttf\include;..\3rdParty\SDL2_image\include;..\3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\imgui;..\3rdParty\SDL2_ttf\include;..\3rdParty\SDL2_image\include;..\3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalOptions>/MDd</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -103,11 +102,10 @@
       <PrecompiledHeaderFile>scpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SC_PLATFORM_WINDOWS;SC_BUILD_DLL;SC_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;..\3rdParty\SDL2_ttf\include;..\3rdParty\SDL2_image\include;..\3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\imgui;..\3rdParty\SDL2_ttf\include;..\3rdParty\SDL2_image\include;..\3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalOptions>/MDd</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -126,11 +124,10 @@
       <PrecompiledHeaderFile>scpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SC_PLATFORM_WINDOWS;SC_BUILD_DLL;SC_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;..\3rdParty\SDL2_ttf\include;..\3rdParty\SDL2_image\include;..\3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\imgui;..\3rdParty\SDL2_ttf\include;..\3rdParty\SDL2_image\include;..\3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalOptions>/MDd</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -144,6 +141,10 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Scott\Input.h" />
+    <ClInclude Include="src\Platform\Windows\InputManager.h" />
+    <ClInclude Include="src\Platform\SDL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\Platform\SDL\ImGuiSDLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Scott.h" />
     <ClInclude Include="src\Scott\Application.h" />
@@ -153,6 +154,8 @@
     <ClInclude Include="src\Scott\Events\Event.h" />
     <ClInclude Include="src\Scott\Events\KeyEvent.h" />
     <ClInclude Include="src\Scott\Events\MouseEvent.h" />
+    <ClInclude Include="src\Scott\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Scott\InputDefinitions.h" />
     <ClInclude Include="src\Scott\Layer.h" />
     <ClInclude Include="src\Scott\LayerStack.h" />
     <ClInclude Include="src\Scott\Log.h" />
@@ -160,14 +163,23 @@
     <ClInclude Include="src\scpch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\Windows\InputManager.cpp" />
+    <ClCompile Include="src\Platform\SDL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\Platform\SDL\ImGuiSDLRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Scott\Application.cpp" />
+    <ClCompile Include="src\Scott\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Scott\Layer.cpp" />
     <ClCompile Include="src\Scott\LayerStack.cpp" />
     <ClCompile Include="src\Scott\Log.cpp" />
     <ClCompile Include="src\scpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="vendor\imgui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

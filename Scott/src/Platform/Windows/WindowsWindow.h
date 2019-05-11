@@ -21,13 +21,15 @@ namespace Scott {
 		bool IsVSync() const override;
 
 		inline virtual void* GetNativeWindow() const { return m_pWindow; }
+		inline virtual void* GetSDLContext() const { return m_Context; }
+
+		inline SDL_Window* GetSDLWindow() { return m_pWindow; }
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
 	private:
 		SDL_Window* m_pWindow;
 		SDL_GLContext m_Context;
-		SDL_Event e;
 
 		struct WindowData
 		{

@@ -4,6 +4,9 @@
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform\SDL">
+      <UniqueIdentifier>{1C7CA7CC-08DF-3671-B164-6F279DA602F4}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
     </Filter>
@@ -13,8 +16,17 @@
     <Filter Include="Scott\Events">
       <UniqueIdentifier>{B666A62C-A2C9-35D1-4B4F-6E8737910154}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scott\ImGui">
+      <UniqueIdentifier>{BC1DC49C-28D3-3C92-B1C7-36691D7C3396}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\SDL\ImGuiOpenGLRenderer.h">
+      <Filter>Platform\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\SDL\ImGuiSDLRenderer.h">
+      <Filter>Platform\SDL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -40,6 +52,15 @@
     <ClInclude Include="src\Scott\Events\MouseEvent.h">
       <Filter>Scott\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Scott\ImGui\ImGuiLayer.h">
+      <Filter>Scott\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scott\Layer.h">
+      <Filter>Scott</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scott\LayerStack.h">
+      <Filter>Scott</Filter>
+    </ClInclude>
     <ClInclude Include="src\Scott\Log.h">
       <Filter>Scott</Filter>
     </ClInclude>
@@ -47,21 +68,36 @@
       <Filter>Scott</Filter>
     </ClInclude>
     <ClInclude Include="src\scpch.h" />
-    <ClInclude Include="src\Scott\LayerStack.h" />
-    <ClInclude Include="src\Scott\Layer.h" />
+    <ClInclude Include="src\Platform\Windows\InputManager.h" />
+    <ClInclude Include="src\Scott\Input.h" />
+    <ClInclude Include="src\Scott\InputDefinitions.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\SDL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Platform\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\SDL\ImGuiSDLRenderer.cpp">
+      <Filter>Platform\SDL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Scott\Application.cpp">
       <Filter>Scott</Filter>
     </ClCompile>
+    <ClCompile Include="src\Scott\ImGui\ImGuiLayer.cpp">
+      <Filter>Scott\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scott\Layer.cpp">
+      <Filter>Scott</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scott\LayerStack.cpp">
+      <Filter>Scott</Filter>
+    </ClCompile>
     <ClCompile Include="src\Scott\Log.cpp">
       <Filter>Scott</Filter>
     </ClCompile>
     <ClCompile Include="src\scpch.cpp" />
-    <ClCompile Include="src\Scott\LayerStack.cpp" />
-    <ClCompile Include="src\Scott\Layer.cpp" />
+    <ClCompile Include="src\Platform\Windows\InputManager.cpp" />
   </ItemGroup>
 </Project>

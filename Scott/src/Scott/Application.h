@@ -1,10 +1,10 @@
 #pragma once
-
 #include "Core.h"
-#include "Scott/Events/ApplicationEvent.h"
-
 
 #include "Window.h"
+#include "Scott/Events/ApplicationEvent.h"
+#include "Scott/LayerStack.h"
+
 
 namespace Scott
 {
@@ -17,11 +17,20 @@ namespace Scott
 		void Run();
 
 		void OnEvent(Event& e);
+
+		void PushLayer(Layer* layer);
+		void PushOverlay(Layer* layer);
+
+		inline static Application& get() { return *s_Instance; }
+		inline Window& GetWindow() { return *m_pWindow; }
 	private:
 		bool OnWindowClosed(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_pWindow;
 		bool m_Running = true;
+		LayerStack m_LayerStack;
+
+		static Application* s_Instance;
 	};
 
 	//To be defined in the client
