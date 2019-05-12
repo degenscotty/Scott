@@ -12,7 +12,7 @@
 ///
 #define KEYBOARD_SIZE 282
 
-/// I've made the following table according to this reference:
+/// the following table came from this reference:
 /// http://wiki.libsdl.org/SDLScancodeLookup
 ///
 enum KeyboardKey

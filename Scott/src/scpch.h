@@ -36,3 +36,4 @@
 #include <GL\GLU.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <glm.hpp>

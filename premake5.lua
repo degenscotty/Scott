@@ -38,7 +38,8 @@ project "Scott"
 		"%{prj.name}/vendor/imgui",
 		"3rdParty/SDL2_ttf/include",
 		"3rdParty/SDL2_image/include",
-		"3rdParty/SDL2/include"
+		"3rdParty/SDL2/include",
+		"3rdParty/glm/glm"
 	}
 	
 	libdirs
@@ -105,7 +106,8 @@ project "Sandbox"
 		"Scott/src",
 		"3rdParty/SDL2_ttf/include",
 		"3rdParty/SDL2_image/include",
-		"3rdParty/SDL2/include"
+		"3rdParty/SDL2/include",
+		"3rdParty/glm/glm"
 	}
 	
 	libdirs

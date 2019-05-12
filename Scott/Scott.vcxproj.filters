@@ -27,6 +27,9 @@
     <ClInclude Include="src\Platform\SDL\ImGuiSDLRenderer.h">
       <Filter>Platform\SDL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\Windows\InputManager.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -55,6 +58,12 @@
     <ClInclude Include="src\Scott\ImGui\ImGuiLayer.h">
       <Filter>Scott\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\Scott\Input.h">
+      <Filter>Scott</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scott\InputDefinitions.h">
+      <Filter>Scott</Filter>
+    </ClInclude>
     <ClInclude Include="src\Scott\Layer.h">
       <Filter>Scott</Filter>
     </ClInclude>
@@ -68,9 +77,6 @@
       <Filter>Scott</Filter>
     </ClInclude>
     <ClInclude Include="src\scpch.h" />
-    <ClInclude Include="src\Platform\Windows\InputManager.h" />
-    <ClInclude Include="src\Scott\Input.h" />
-    <ClInclude Include="src\Scott\InputDefinitions.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\SDL\ImGuiOpenGLRenderer.cpp">
@@ -78,6 +84,9 @@
     </ClCompile>
     <ClCompile Include="src\Platform\SDL\ImGuiSDLRenderer.cpp">
       <Filter>Platform\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\InputManager.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
@@ -98,6 +107,5 @@
       <Filter>Scott</Filter>
     </ClCompile>
     <ClCompile Include="src\scpch.cpp" />
-    <ClCompile Include="src\Platform\Windows\InputManager.cpp" />
   </ItemGroup>
 </Project>

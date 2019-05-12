@@ -8,7 +8,7 @@ namespace Scott
 	{
 	public:
 
-		void UpdateImpl();
+		void UpdateImpl() override;
 
 		bool IsKeyPressedImpl(int keycode) override;
 		bool IsMouseButtonPressedImpl(int button) override;
