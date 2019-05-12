@@ -1,5 +1,6 @@
 workspace "Scott"
 	architecture "x64"
+	startproject "Sandbox"
 	
 	configurations
 	{
@@ -15,9 +16,10 @@ include "Scott/vendor/imgui"
 
 project "Scott"
 	location "Scott"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
-	staticruntime "off"
+	cppdialect "C++17"
+	staticruntime "on"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -55,7 +57,6 @@ project "Scott"
 	}
 	
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 		
 		defines
@@ -64,31 +65,27 @@ project "Scott"
 			"SC_BUILD_DLL"
 		}
 		
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-		}
-		
 	filter "configurations:Debug"
 		defines "SC_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 		
 	filter "configurations:Release"
 		defines "SC_RELEASE"
 		runtime "Release"
-		symbols "On"
+		optimize "on"
 		
 	filter "configurations:Dist"
 		defines "SC_DIST"
 		runtime "Release"
-		symbols "On"
+		optimize "on"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp" 
 	language "C++"
-	staticruntime "off"
+	cppdialect "C++17"
+	staticruntime "on"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -123,7 +120,6 @@ project "Sandbox"
 	}
 	
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 		
 		defines
@@ -134,14 +130,14 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "SC_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 		
 	filter "configurations:Release"
 		defines "SC_RELEASE"
 		runtime "Release"
-		symbols "On"
+		optimize "on"
 		
 	filter "configurations:Dist"
 		defines "SC_DIST"
 		runtime "Release"
-		symbols "On"
+		optimize "on"

@@ -4,7 +4,7 @@
 #include "Window.h"
 #include "Scott/Events/ApplicationEvent.h"
 #include "Scott/LayerStack.h"
-
+#include "Scott/ImGui/ImGuiLayer.h"
 
 namespace Scott
 {
@@ -27,6 +27,7 @@ namespace Scott
 		bool OnWindowClosed(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_pWindow;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 

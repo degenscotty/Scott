@@ -88,12 +88,12 @@ namespace Scott
 
 	float InputManager::GetMouseXImpl()
 	{
-		return m_MouseX;
+		return (float)m_MouseX;
 	}
 
 	float InputManager::GetMouseYImpl()
 	{
-		return m_MouseY;
+		return (float)m_MouseY;
 	}
 
 	std::pair<float, float> InputManager::GetMousePosImpl()

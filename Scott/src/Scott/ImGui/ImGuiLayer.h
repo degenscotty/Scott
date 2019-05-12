@@ -12,11 +12,13 @@ namespace Scott
 
 		virtual void OnAttach();
 		virtual void OnDetach();
-		void OnUpdate() override;
-		void OnEvent(Event& event) override;
-
+		virtual void OnImGuiRender();
+		
+		void Begin();
+		void End();
 
 	private:
 		float m_Time = 0.0f;
+		bool show_demo_window;
 	};
 }

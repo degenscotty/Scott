@@ -77,6 +77,10 @@
       <Filter>Scott</Filter>
     </ClInclude>
     <ClInclude Include="src\scpch.h" />
+    <ClInclude Include="src\Scott\GameTime.h" />
+    <ClInclude Include="src\Scott\SceneGraph\GameObject.h" />
+    <ClInclude Include="src\Scott\SceneGraph\SceneManager.h" />
+    <ClInclude Include="src\Scott\SceneGraph\Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\SDL\ImGuiOpenGLRenderer.cpp">
@@ -107,5 +111,9 @@
       <Filter>Scott</Filter>
     </ClCompile>
     <ClCompile Include="src\scpch.cpp" />
+    <ClCompile Include="src\Scott\GameTime.cpp" />
+    <ClCompile Include="src\Scott\SceneGraph\GameObject.cpp" />
+    <ClCompile Include="src\Scott\SceneGraph\SceneManager.cpp" />
+    <ClCompile Include="src\Scott\SceneGraph\Scene.cpp" />
   </ItemGroup>
 </Project>

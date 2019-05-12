@@ -23,19 +23,19 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v141</PlatformToolset>
@@ -54,25 +54,22 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
     <OutDir>..\bin\Debug-windows-x86_64\Scott\</OutDir>
     <IntDir>..\bin-int\Debug-windows-x86_64\Scott\</IntDir>
     <TargetName>Scott</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>true</LinkIncremental>
     <OutDir>..\bin\Release-windows-x86_64\Scott\</OutDir>
     <IntDir>..\bin-int\Release-windows-x86_64\Scott\</IntDir>
     <TargetName>Scott</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <LinkIncremental>true</LinkIncremental>
     <OutDir>..\bin\Dist-windows-x86_64\Scott\</OutDir>
     <IntDir>..\bin-int\Dist-windows-x86_64\Scott\</IntDir>
     <TargetName>Scott</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -83,18 +80,16 @@
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\imgui;..\3rdParty\SDL2_ttf\include;..\3rdParty\SDL2_image\include;..\3rdParty\SDL2\include;..\3rdParty\glm\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\3rdParty\SDL2_ttf\lib\x64;..\3rdParty\SDL2_image\lib\x64;..\3rdParty\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>..\bin\Debug-windows-x86_64\Scott\Scott.lib</ImportLibrary>
     </Link>
-    <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Debug-windows-x86_64\Scott\Scott.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\Scott\Scott.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\Scott\Scott.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul)</Command>
-    </PostBuildEvent>
+    <Lib>
+      <AdditionalLibraryDirectories>..\3rdParty\SDL2_ttf\lib\x64;..\3rdParty\SDL2_image\lib\x64;..\3rdParty\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -103,20 +98,22 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SC_PLATFORM_WINDOWS;SC_BUILD_DLL;SC_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\imgui;..\3rdParty\SDL2_ttf\include;..\3rdParty\SDL2_image\include;..\3rdParty\SDL2\include;..\3rdParty\glm\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\3rdParty\SDL2_ttf\lib\x64;..\3rdParty\SDL2_image\lib\x64;..\3rdParty\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>..\bin\Release-windows-x86_64\Scott\Scott.lib</ImportLibrary>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
     </Link>
-    <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Release-windows-x86_64\Scott\Scott.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\Scott\Scott.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\Scott\Scott.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul)</Command>
-    </PostBuildEvent>
+    <Lib>
+      <AdditionalLibraryDirectories>..\3rdParty\SDL2_ttf\lib\x64;..\3rdParty\SDL2_image\lib\x64;..\3rdParty\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
@@ -125,20 +122,22 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SC_PLATFORM_WINDOWS;SC_BUILD_DLL;SC_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\imgui;..\3rdParty\SDL2_ttf\include;..\3rdParty\SDL2_image\include;..\3rdParty\SDL2\include;..\3rdParty\glm\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\3rdParty\SDL2_ttf\lib\x64;..\3rdParty\SDL2_image\lib\x64;..\3rdParty\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>..\bin\Dist-windows-x86_64\Scott\Scott.lib</ImportLibrary>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
     </Link>
-    <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Dist-windows-x86_64\Scott\Scott.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\Scott\Scott.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\Scott\Scott.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul)</Command>
-    </PostBuildEvent>
+    <Lib>
+      <AdditionalLibraryDirectories>..\3rdParty\SDL2_ttf\lib\x64;..\3rdParty\SDL2_image\lib\x64;..\3rdParty\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Platform\SDL\ImGuiOpenGLRenderer.h" />
@@ -153,12 +152,16 @@
     <ClInclude Include="src\Scott\Events\Event.h" />
     <ClInclude Include="src\Scott\Events\KeyEvent.h" />
     <ClInclude Include="src\Scott\Events\MouseEvent.h" />
+    <ClInclude Include="src\Scott\GameTime.h" />
     <ClInclude Include="src\Scott\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Scott\Input.h" />
     <ClInclude Include="src\Scott\InputDefinitions.h" />
     <ClInclude Include="src\Scott\Layer.h" />
     <ClInclude Include="src\Scott\LayerStack.h" />
     <ClInclude Include="src\Scott\Log.h" />
+    <ClInclude Include="src\Scott\SceneGraph\GameObject.h" />
+    <ClInclude Include="src\Scott\SceneGraph\Scene.h" />
+    <ClInclude Include="src\Scott\SceneGraph\SceneManager.h" />
     <ClInclude Include="src\Scott\Window.h" />
     <ClInclude Include="src\scpch.h" />
   </ItemGroup>
@@ -168,10 +171,14 @@
     <ClCompile Include="src\Platform\Windows\InputManager.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Scott\Application.cpp" />
+    <ClCompile Include="src\Scott\GameTime.cpp" />
     <ClCompile Include="src\Scott\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Scott\Layer.cpp" />
     <ClCompile Include="src\Scott\LayerStack.cpp" />
     <ClCompile Include="src\Scott\Log.cpp" />
+    <ClCompile Include="src\Scott\SceneGraph\GameObject.cpp" />
+    <ClCompile Include="src\Scott\SceneGraph\Scene.cpp" />
+    <ClCompile Include="src\Scott\SceneGraph\SceneManager.cpp" />
     <ClCompile Include="src\scpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

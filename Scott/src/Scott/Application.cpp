@@ -4,6 +4,7 @@
 #include "Scott/Log.h"
 #include "Input.h"
 #include "InputDefinitions.h"
+#include "GameTime.h"
 
 namespace Scott
 {
@@ -18,6 +19,9 @@ namespace Scott
 
 		m_pWindow = std::unique_ptr<Window>(Window::Create());
 		m_pWindow->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
+
+		m_ImGuiLayer = new ImGuiLayer();
+		PushOverlay(m_ImGuiLayer);
 	}
 
 
@@ -52,23 +56,22 @@ namespace Scott
 
 	void Application::Run()
 	{
-		while (m_Running)
+		GameTime& gameTime = GameTime::get();
+
+		while (true)
 		{
-			glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
+			glClearColor(0.75f, 0.75f, 0.75f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			gameTime.Update();
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 
-			if (Input::IsMouseButtonPressed(MOUSE_LEFT))
-			{
-				SC_CORE_INFO("MOUSEBUTTONLEFT");
-			}
-
-			if (Input::IsMouseButtonPressed(MOUSE_RIGHT))
-			{
-				SC_CORE_INFO("MOUSEBUTTONRIGHT");
-			}
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+				layer->OnImGuiRender();
+			m_ImGuiLayer->End();
 
 			m_pWindow->OnUpdate();
 		}

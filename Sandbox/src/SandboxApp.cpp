@@ -28,7 +28,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Scott::ImGuiLayer());
 	}
 
 	~Sandbox()
