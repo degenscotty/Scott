@@ -1,10 +1,11 @@
 #pragma once
+#include "Scott/Helpers/Singleton.h"
 
 namespace Scott
 {
 	class Scene;
 
-	class SceneManager final
+	class SceneManager final : public Singleton<SceneManager>
 	{
 	public:
 		void CreateScene(const std::string& name);
@@ -13,13 +14,10 @@ namespace Scott
 
 		void Update();
 		void Render();
-
-		inline static SceneManager* get() { return s_Instance; }
+		Scene* GetScene(const std::string& sceneName);
 
 	private:
 		std::vector<Scene*> m_Scenes;
-
-		static SceneManager* s_Instance;
 	};
 
 }

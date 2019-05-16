@@ -6,6 +6,7 @@
 #include "Platform/SDL/ImGuiOpenGLRenderer.h"
 
 #include "Scott/Application.h"
+#include "Scott/GameTime.h"
 
 namespace Scott
 {
@@ -77,13 +78,10 @@ namespace Scott
 			ImGui::ShowDemoWindow(&show_demo_window);
 
 		{
-			static float f = 0.0f;
-			static int counter = 0;
-
 			ImGui::Begin("Test Window");                         
 			ImGui::Checkbox("Demo Window", &show_demo_window);
 
-			ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+			ImGui::Text("%.0f FPS", (float)GameTime::GetInstance().GetFPS());
 			ImGui::End();
 		}
 	}

@@ -1,11 +1,9 @@
 #include "scpch.h"
-#include "SceneManager.h"
-#include "Scene.h"
+#include "Scott/SceneGraph/SceneManager.h"
+#include "Scott/SceneGraph/Scene.h"
 
 namespace Scott
 {
-	SceneManager* SceneManager::s_Instance = new SceneManager();
-
 	SceneManager::~SceneManager()
 	{
 		for (Scene* scene : m_Scenes)
@@ -16,7 +14,7 @@ namespace Scott
 	{
 		for (Scene* scene : m_Scenes)
 		{
-			scene->Update();
+			scene->RootUpdate();
 		}
 	}
 
@@ -24,8 +22,25 @@ namespace Scott
 	{
 		for (Scene* scene : m_Scenes)
 		{
-			scene->Render();
+			scene->RootRender();
 		}
+	}
+
+	Scene* SceneManager::GetScene(const std::string& sceneName)
+	{
+		std::vector<Scene*>::iterator it = std::find_if(m_Scenes.begin(), m_Scenes.end(), [&sceneName](Scene* scene) {
+			if (scene->GetSceneName() == sceneName)
+				return true;
+			return false;
+		});
+
+		if (it == m_Scenes.end())
+		{
+			SC_CORE_ERROR("SceneManager::GetScene > Couldn't find requested scene in m_Scenes: {0}", sceneName);
+			return nullptr;
+		}
+
+		return *it;
 	}
 
 	void SceneManager::CreateScene(const std::string& name)

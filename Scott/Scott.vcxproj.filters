@@ -13,11 +13,20 @@
     <Filter Include="Scott">
       <UniqueIdentifier>{1223150E-7E37-3DBF-47B9-E01EB38C39F0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scott\Components">
+      <UniqueIdentifier>{E7B8020B-D3B1-215D-FCE3-06E2E83B0169}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Scott\Events">
       <UniqueIdentifier>{B666A62C-A2C9-35D1-4B4F-6E8737910154}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scott\Helpers">
+      <UniqueIdentifier>{D4C53981-4086-B5B7-09C1-FE347540FA93}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Scott\ImGui">
       <UniqueIdentifier>{BC1DC49C-28D3-3C92-B1C7-36691D7C3396}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scott\SceneGraph">
+      <UniqueIdentifier>{81F5C4BF-6DEE-E311-9620-C9968278C31D}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -37,6 +46,15 @@
     <ClInclude Include="src\Scott\Application.h">
       <Filter>Scott</Filter>
     </ClInclude>
+    <ClInclude Include="src\Scott\Components\BaseComponent.h">
+      <Filter>Scott\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scott\Components\TextureComponent.h">
+      <Filter>Scott\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scott\Components\TransformComponent.h">
+      <Filter>Scott\Components</Filter>
+    </ClInclude>
     <ClInclude Include="src\Scott\Core.h">
       <Filter>Scott</Filter>
     </ClInclude>
@@ -54,6 +72,15 @@
     </ClInclude>
     <ClInclude Include="src\Scott\Events\MouseEvent.h">
       <Filter>Scott\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scott\GameTime.h">
+      <Filter>Scott</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scott\Helpers\ResourceManager.h">
+      <Filter>Scott\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scott\Helpers\Texture2D.h">
+      <Filter>Scott\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="src\Scott\ImGui\ImGuiLayer.h">
       <Filter>Scott\ImGui</Filter>
@@ -73,14 +100,24 @@
     <ClInclude Include="src\Scott\Log.h">
       <Filter>Scott</Filter>
     </ClInclude>
+    <ClInclude Include="src\Scott\Renderer.h">
+      <Filter>Scott</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scott\SceneGraph\GameObject.h">
+      <Filter>Scott\SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scott\SceneGraph\Scene.h">
+      <Filter>Scott\SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scott\SceneGraph\SceneManager.h">
+      <Filter>Scott\SceneGraph</Filter>
+    </ClInclude>
     <ClInclude Include="src\Scott\Window.h">
       <Filter>Scott</Filter>
     </ClInclude>
     <ClInclude Include="src\scpch.h" />
-    <ClInclude Include="src\Scott\GameTime.h" />
-    <ClInclude Include="src\Scott\SceneGraph\GameObject.h" />
-    <ClInclude Include="src\Scott\SceneGraph\SceneManager.h" />
-    <ClInclude Include="src\Scott\SceneGraph\Scene.h" />
+    <ClInclude Include="src\Scott\Helpers\Singleton.h" />
+    <ClInclude Include="src\Scott\Components\Components.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\SDL\ImGuiOpenGLRenderer.cpp">
@@ -98,6 +135,21 @@
     <ClCompile Include="src\Scott\Application.cpp">
       <Filter>Scott</Filter>
     </ClCompile>
+    <ClCompile Include="src\Scott\Components\BaseComponent.cpp">
+      <Filter>Scott\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scott\Components\TextureComponent.cpp">
+      <Filter>Scott\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scott\Components\TransformComponent.cpp">
+      <Filter>Scott\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scott\GameTime.cpp">
+      <Filter>Scott</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scott\Helpers\ResourceManager.cpp">
+      <Filter>Scott\Helpers</Filter>
+    </ClCompile>
     <ClCompile Include="src\Scott\ImGui\ImGuiLayer.cpp">
       <Filter>Scott\ImGui</Filter>
     </ClCompile>
@@ -110,10 +162,18 @@
     <ClCompile Include="src\Scott\Log.cpp">
       <Filter>Scott</Filter>
     </ClCompile>
+    <ClCompile Include="src\Scott\Renderer.cpp">
+      <Filter>Scott</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scott\SceneGraph\GameObject.cpp">
+      <Filter>Scott\SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scott\SceneGraph\Scene.cpp">
+      <Filter>Scott\SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scott\SceneGraph\SceneManager.cpp">
+      <Filter>Scott\SceneGraph</Filter>
+    </ClCompile>
     <ClCompile Include="src\scpch.cpp" />
-    <ClCompile Include="src\Scott\GameTime.cpp" />
-    <ClCompile Include="src\Scott\SceneGraph\GameObject.cpp" />
-    <ClCompile Include="src\Scott\SceneGraph\SceneManager.cpp" />
-    <ClCompile Include="src\Scott\SceneGraph\Scene.cpp" />
   </ItemGroup>
 </Project>

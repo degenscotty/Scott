@@ -5,6 +5,8 @@
 #include "Input.h"
 #include "InputDefinitions.h"
 #include "GameTime.h"
+#include "Scott/SceneGraph/SceneManager.h"
+#include "Scott/Renderer.h"
 
 namespace Scott
 {
@@ -22,6 +24,10 @@ namespace Scott
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
+
+		SceneManager& sceneManager = SceneManager::GetInstance();
+		Renderer& renderer = Renderer::GetInstance();
+		renderer.Initialize();
 	}
 
 
@@ -56,24 +62,23 @@ namespace Scott
 
 	void Application::Run()
 	{
-		GameTime& gameTime = GameTime::get();
+		GameTime& gameTime = GameTime::GetInstance();
+		SceneManager& sceneManager = SceneManager::GetInstance();
+		Renderer& renderer = Renderer::GetInstance();
 
 		while (true)
 		{
-			glClearColor(0.75f, 0.75f, 0.75f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT);
-
 			gameTime.Update();
-
+			m_pWindow->OnUpdate();
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+			sceneManager.Update();
+			renderer.Render();
 
-			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack)
-				layer->OnImGuiRender();
-			m_ImGuiLayer->End();
-
-			m_pWindow->OnUpdate();
+			//m_ImGuiLayer->Begin();
+			//for (Layer* layer : m_LayerStack)
+			//	layer->OnImGuiRender();
+			//m_ImGuiLayer->End();
 		}
 	}
 

@@ -1,24 +1,24 @@
 #pragma once
+#include "Scott/Helpers/Singleton.h"
+
 #include <chrono>
 
 namespace Scott
 {
-	class SCOTT_API GameTime
+	class SCOTT_API GameTime : public Singleton<GameTime>
 	{
 	public:
-		GameTime();
+		~GameTime() = default;
+
 		void Update();
 		float GetElapsedSec() const;
 		unsigned int GetFPS() const;
 
-		inline static GameTime& get() { return *s_Instance; }
-
 	private:
+
 		std::chrono::high_resolution_clock::time_point m_CurrentTime;
 		std::chrono::high_resolution_clock::time_point m_PreviousTime;
 		float m_ElapsedSec;
-
-		static GameTime* s_Instance;
 	};
 }
 

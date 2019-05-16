@@ -28,7 +28,9 @@ namespace Scott
 
 		std::unique_ptr<Window> m_pWindow;
 		ImGuiLayer* m_ImGuiLayer;
+
 		bool m_Running = true;
+
 		LayerStack m_LayerStack;
 
 		static Application* s_Instance;

@@ -1,10 +1,10 @@
 #pragma once
 #include "SceneManager.h"
 
+#include "Scott/SceneGraph/GameObject.h"
+
 namespace Scott
 {
-	class GameObject;
-
 	class Scene
 	{
 	public:
@@ -13,15 +13,24 @@ namespace Scott
 
 		void Add(GameObject* object);
 
-		void Update();
-		void Render() const;
-
 		Scene(const Scene& other) = delete;
 		Scene(Scene&& other) = delete;
 		Scene& operator=(const Scene& other) = delete;
 		Scene& operator=(Scene&& other) = delete;
 
-	private: 
+		const std::string& GetSceneName();
+
+	protected:
+		virtual void Initialize() {}
+		virtual void Update() {}
+		virtual void Render() {}
+
+	private:
+		friend class SceneManager;
+
+		void RootUpdate();
+		void RootRender();
+
 		std::string m_Name{};
 		std::vector<GameObject*> m_GameObjects;
 

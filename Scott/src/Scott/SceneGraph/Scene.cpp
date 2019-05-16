@@ -1,6 +1,5 @@
 #include "scpch.h"
 #include "Scene.h"
-#include "GameObject.h"
 
 namespace Scott
 {
@@ -25,20 +24,26 @@ namespace Scott
 		m_GameObjects.push_back(object);
 	}
 
-	void Scene::Update()
+	void Scene::RootUpdate()
 	{
 		for (GameObject* gameObject : m_GameObjects)
 		{
-			gameObject->Update();
+			gameObject->RootUpdate();
 		}
 	}
 
-	void Scene::Render() const
+	void Scene::RootRender()
 	{
 		for (GameObject* gameObject : m_GameObjects)
 		{
-			gameObject->Render();
+			gameObject->RootRender();
 		}
 	}
+
+	const std::string& Scene::GetSceneName()
+	{
+		return m_Name;
+	}
 }
+
 

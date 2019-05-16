@@ -3,19 +3,6 @@
 
 namespace Scott
 {
-	GameTime* GameTime::s_Instance = new GameTime();
-
-	GameTime::GameTime()
-		: m_CurrentTime{}
-		, m_ElapsedSec{}
-		, m_PreviousTime{ std::chrono::high_resolution_clock::now() }
-	{
-		if (s_Instance == nullptr)
-		{
-			s_Instance = this;
-		}
-	}
-
 	void GameTime::Update()
 	{
 		m_CurrentTime = std::chrono::high_resolution_clock::now();

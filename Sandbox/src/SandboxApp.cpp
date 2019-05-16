@@ -1,5 +1,6 @@
 #include "scpch.h"
 #include <Scott.h>
+#include "Layers/GameLayer.h"
 
 class ExampleLayer : public Scott::Layer
 {
@@ -28,6 +29,7 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
+		PushLayer(new GameLayer());
 	}
 
 	~Sandbox()

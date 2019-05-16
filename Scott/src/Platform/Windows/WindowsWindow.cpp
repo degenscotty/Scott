@@ -7,6 +7,7 @@
 
 #include "Scott/Log.h"
 #include "Scott/Input.h"
+#include "Scott/SceneGraph/SceneManager.h"
 
 namespace Scott
 {
@@ -41,8 +42,8 @@ namespace Scott
 			SC_CORE_ASSERT("Core::Initialize(), error when calling SDL_Init : {0}", SDL_GetError());
 		}
 
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+		//SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+		//SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
 		m_pWindow = SDL_CreateWindow(
 			m_Data.Title.c_str(),
@@ -55,14 +56,14 @@ namespace Scott
 
 		if (m_pWindow == nullptr)
 		{
-			SC_CORE_ERROR("Core::Initialize(), error when calling SDL_CreateWindow : {0}", SDL_GetError());
+			SC_CORE_ERROR("WindowsWindow::Initialize( ) > error when calling SDL_CreateWindow : {0}", SDL_GetError());
 			return;
 		}
 
 		m_Context = SDL_GL_CreateContext(m_pWindow);
 		if (m_Context == nullptr)
 		{
-			SC_CORE_ERROR("Core::Initialize( ), error when calling SDL_GL_CreateContext: {0}", SDL_GetError());
+			SC_CORE_ERROR("WindowsWindow::Initialize( ) > error when calling SDL_GL_CreateContext: {0}", SDL_GetError());
 			return;
 		}
 
@@ -73,12 +74,14 @@ namespace Scott
 	void WindowsWindow::Shutdown()
 	{
 		SDL_DestroyWindow(m_pWindow);
+		m_pWindow = nullptr;
+		SDL_Quit();
 	}
 
 	void WindowsWindow::OnUpdate()
 	{
 		Input::Update();
-		SDL_GL_SwapWindow(m_pWindow);
+		//SDL_GL_SwapWindow(m_pWindow);
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

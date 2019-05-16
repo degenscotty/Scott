@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Scott/Window.h"
+#include "Scott/SceneGraph/SceneManager.h"
 
 namespace Scott {
 
