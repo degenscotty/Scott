@@ -18,10 +18,17 @@ namespace Scott
 		void Translate(float x, float y);
 		void Translate(const glm::vec2& position);
 
+		void TranslateWorld(float x, float y);
+		void TranslateWorld(const glm::vec2& position);
+
 		void Rotate(float x, bool isEuler = true);
+		void RotateWorld(float x, bool isEuler = true);
 
 		void Scale(float x, float y);
 		void Scale(const glm::vec2& scale);
+
+		void ScaleWorld(float x, float y);
+		void ScaleWorld(const glm::vec2& scale);
 
 		const glm::vec2& GetPosition() const { return m_Position; }
 		const glm::vec2& GetWorldPosition() const { return m_WorldPosition; }

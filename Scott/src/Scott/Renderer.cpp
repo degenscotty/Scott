@@ -75,9 +75,12 @@ namespace Scott
 		dest.w = int(dest.w * pTransform->GetWorldScale().x);
 		dest.h = int(dest.h * pTransform->GetWorldScale().y);
 
-		SDL_Point* pPivot = new SDL_Point();
-		pPivot->x = static_cast<int>(texComponent->GetPivot().x);
-		pPivot->y = static_cast<int>(texComponent->GetPivot().y);
+		dest.x = dest.x - (int)(dest.w / 2.0f);
+		dest.y = dest.y - (int)(dest.h / 2.0f);
+
+		//SDL_Point* pPivot = new SDL_Point();
+		//pPivot->x = static_cast<int>(texComponent->GetPivot().x);
+		//pPivot->y = static_cast<int>(texComponent->GetPivot().y);
 
 		//if (texComponent->GetPivot())
 		//{
@@ -85,6 +88,6 @@ namespace Scott
 		//	pPivot->x = static_cast<int>(transfComponent->GetPivot()->x);
 		//	pPivot->y = static_cast<int>(transfComponent->GetPivot()->y);
 		//}
-		SDL_RenderCopyEx(GetSDLRenderer(), pTex->GetSDLTexture(), nullptr, &dest, pTransform->GetWorldRotation(), pPivot, SDL_FLIP_NONE);
+		SDL_RenderCopyEx(GetSDLRenderer(), pTex->GetSDLTexture(), nullptr, &dest, pTransform->GetWorldRotation(), nullptr, SDL_FLIP_NONE);
 	}
 }

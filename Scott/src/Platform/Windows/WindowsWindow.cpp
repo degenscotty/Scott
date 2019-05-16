@@ -42,8 +42,8 @@ namespace Scott
 			SC_CORE_ASSERT("Core::Initialize(), error when calling SDL_Init : {0}", SDL_GetError());
 		}
 
-		//SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
-		//SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
 		m_pWindow = SDL_CreateWindow(
 			m_Data.Title.c_str(),
@@ -53,6 +53,25 @@ namespace Scott
 			(int)props.Height,
 			SDL_WINDOW_OPENGL |
 			SDL_WINDOW_RESIZABLE);
+
+		//// Set the Projection matrix to the identity matrix
+		//glMatrixMode(GL_PROJECTION);
+		//glLoadIdentity();
+
+		//// Set up a two-dimensional orthographic viewing region.
+		//gluOrtho2D(0, m_Data.Width, 0, m_Data.Height); // y from bottom to top
+
+		//// Set the viewport to the client window area
+		//// The viewport is the rectangular region of the window where the image is drawn.
+		//glViewport(0, 0, int(m_Data.Width), int(m_Data.Height));
+
+		//// Set the Model view matrix to the identity matrix
+		//glMatrixMode(GL_MODELVIEW);
+		//glLoadIdentity();
+
+		//// Enable color blending and use alpha blending
+		//glEnable(GL_BLEND);
+		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		if (m_pWindow == nullptr)
 		{

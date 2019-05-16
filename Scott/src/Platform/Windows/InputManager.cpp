@@ -9,7 +9,10 @@ namespace Scott
 	{
 		for (int i{ 0 }; i < KEYBOARD_SIZE; i++)
 		{
-			m_KeyDown[i] = false;
+			if (m_KeyDown[i] == true && m_KeyUp[i] == true)
+			{
+				m_KeyDown[i] = false;
+			}
 			m_KeyUp[i] = false;
 		}
 

@@ -40,9 +40,24 @@ namespace Scott
 		m_Position = position;
 	}
 
+	void TransformComponent::TranslateWorld(float x, float y)
+	{
+		m_WorldPosition = glm::vec2(x, y);
+	}
+
+	void TransformComponent::TranslateWorld(const glm::vec2& position)
+	{
+		m_WorldPosition = position;
+	}
+
 	void TransformComponent::Rotate(float x, bool isEuler /*= true*/)
 	{
 		m_Rotation = x;
+	}
+
+	void TransformComponent::RotateWorld(float x, bool isEuler /*= true*/)
+	{
+		m_WorldRotation = x;
 	}
 
 	void TransformComponent::Scale(float x, float y)
@@ -53,5 +68,15 @@ namespace Scott
 	void TransformComponent::Scale(const glm::vec2& scale)
 	{
 		m_Scale = scale;
+	}
+
+	void TransformComponent::ScaleWorld(float x, float y)
+	{
+		m_WorldScale = glm::vec2(x, y);
+	}
+
+	void TransformComponent::ScaleWorld(const glm::vec2& scale)
+	{
+		m_WorldScale = scale;
 	}
 }

@@ -16,11 +16,13 @@ namespace Scott
 
 	void TextureComponent::Render()
 	{
-		if (m_pTexture)
+		if (!m_pTexture)
 		{
-			TransformComponent* component = GetGameObject()->GetComponent<TransformComponent>();
-			m_Renderer.RenderTextureComponent(this, component);
+			SC_CORE_ERROR("TextureComponent::Render > Failed to render Texture!");
 		}
+
+		TransformComponent* component = GetGameObject()->GetComponent<TransformComponent>();
+		m_Renderer.RenderTextureComponent(this, component);
 	}
 
 	void TextureComponent::SetPivot(const glm::vec2& pivot)

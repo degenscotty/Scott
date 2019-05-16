@@ -71,9 +71,15 @@ namespace Scott
 			gameTime.Update();
 			m_pWindow->OnUpdate();
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate();
+			{
+				layer->OnUpdate(); 
+			}
 			sceneManager.Update();
 			renderer.Render();
+			for (Layer* layer : m_LayerStack)
+			{
+				layer->Render();
+			}
 
 			//m_ImGuiLayer->Begin();
 			//for (Layer* layer : m_LayerStack)

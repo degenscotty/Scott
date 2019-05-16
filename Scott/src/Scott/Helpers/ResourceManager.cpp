@@ -49,6 +49,7 @@ namespace Scott
 		else
 		{
 			SC_CORE_ERROR("ResourceManager::LoadTexture > Renderer is invalid!");
+			return nullptr;
 		}
 	}
 }
