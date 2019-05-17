@@ -30,7 +30,7 @@ void GameLayer::OnAttach()
 	texComponent->SetTexture("TestPNG.png");
 	texComponent->SetPivot(glm::vec2(640.0f, 360.0f));
 	m_pTestObject->GetTransform()->TranslateWorld(640.0f, 360.0f);
-	m_pTestObject->GetTransform()->ScaleWorld(0.2, 0.2f);
+	m_pTestObject->GetTransform()->ScaleWorld(0.2f, 0.2f);
 }
 
 void GameLayer::OnDetach()
@@ -63,4 +63,13 @@ void GameLayer::OnUpdate()
 
 void GameLayer::Render()
 {
+	glLineWidth(2.0f);
+	glBegin(GL_LINE_LOOP);
+	{
+		glVertex2f(500, 500);
+		glVertex2f(500, 510);
+		glVertex2f(510, 510);
+		glVertex2f(510, 500);
+	}
+	glEnd();
 }

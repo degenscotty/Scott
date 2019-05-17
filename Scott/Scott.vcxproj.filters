@@ -118,6 +118,7 @@
     <ClInclude Include="src\scpch.h" />
     <ClInclude Include="src\Scott\Helpers\Singleton.h" />
     <ClInclude Include="src\Scott\Components\Components.h" />
+    <ClInclude Include="src\Platform\SDL\imgui_sdl.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\SDL\ImGuiOpenGLRenderer.cpp">
@@ -175,5 +176,6 @@
       <Filter>Scott\SceneGraph</Filter>
     </ClCompile>
     <ClCompile Include="src\scpch.cpp" />
+    <ClCompile Include="src\Platform\SDL\imgui_sdl.cpp" />
   </ItemGroup>
 </Project>

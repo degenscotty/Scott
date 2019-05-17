@@ -13,6 +13,10 @@ namespace Scott
 			{
 				m_KeyDown[i] = false;
 			}
+			else if (m_KeyDown[i] == false && m_KeyUp[i] == true)
+			{
+				m_KeyDown[i] = false;
+			}
 			m_KeyUp[i] = false;
 		}
 
@@ -28,6 +32,11 @@ namespace Scott
 			// Handle the polled event
 			switch (e.type)
 			{
+			case SDL_QUIT:
+			{
+				m_Quit = true;
+			}
+			break;
 			case SDL_KEYDOWN:
 			{
 				if (e.key.repeat != 0)
@@ -102,5 +111,10 @@ namespace Scott
 	std::pair<float, float> InputManager::GetMousePosImpl()
 	{
 		return {(float)m_MouseX, (float)m_MouseY};
+	}
+
+	bool InputManager::QuitImpl()
+	{
+		return m_Quit;
 	}
 }

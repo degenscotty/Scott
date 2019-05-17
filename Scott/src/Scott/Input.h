@@ -14,6 +14,8 @@ namespace Scott
 		inline static float GetMouseX() { return s_Instance->GetMouseXImpl(); }
 
 		inline static std::pair<float, float> GetMousePos() { return s_Instance->GetMousePosImpl(); }
+		
+		inline static bool Quit() { return s_Instance->QuitImpl(); }
 
 		static void Update() { s_Instance->UpdateImpl(); };
 
@@ -25,6 +27,8 @@ namespace Scott
 		virtual float GetMouseYImpl() = 0;
 
 		virtual std::pair<float, float> GetMousePosImpl() = 0;
+
+		virtual bool QuitImpl() = 0;
 
 		virtual void UpdateImpl() = 0;
 	private:

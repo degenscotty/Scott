@@ -18,6 +18,7 @@ namespace Scott
 
 		std::pair<float, float> GetMousePosImpl() override;
 
+		bool QuitImpl() override;
 
 	private:
 		SDL_Event e;
@@ -31,6 +32,7 @@ namespace Scott
 		int m_MouseX;
 		int m_MouseY;
 
+		bool m_Quit = false;
 	};
 }
 

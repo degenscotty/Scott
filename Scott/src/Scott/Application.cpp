@@ -16,18 +16,19 @@ namespace Scott
 
 	Application::Application()
 	{
+		SceneManager& sceneManager = SceneManager::GetInstance();
+		Renderer& renderer = Renderer::GetInstance();
+		
 		SC_CORE_ASSERT(!s_Instance, "Application already excists!");
 		s_Instance = this;
 
 		m_pWindow = std::unique_ptr<Window>(Window::Create());
 		m_pWindow->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
 
+		renderer.Initialize();
+
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
-
-		SceneManager& sceneManager = SceneManager::GetInstance();
-		Renderer& renderer = Renderer::GetInstance();
-		renderer.Initialize();
 	}
 
 
@@ -66,25 +67,40 @@ namespace Scott
 		SceneManager& sceneManager = SceneManager::GetInstance();
 		Renderer& renderer = Renderer::GetInstance();
 
-		while (true)
+		while (!Input::Quit())
 		{
 			gameTime.Update();
+
 			m_pWindow->OnUpdate();
+
 			for (Layer* layer : m_LayerStack)
 			{
 				layer->OnUpdate(); 
 			}
+
 			sceneManager.Update();
-			renderer.Render();
+			
+			// --------------------------- Rendering -------------------------------- //
+
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+				layer->OnImGuiRender();
+
+			renderer.ClearBuffer();
+
+			//glClearColor(0.1, 0.1, 0.1, 1);
+			//glClear(GL_COLOR_BUFFER_BIT);
+
+			m_ImGuiLayer->End();
+
 			for (Layer* layer : m_LayerStack)
 			{
 				layer->Render();
 			}
 
-			//m_ImGuiLayer->Begin();
-			//for (Layer* layer : m_LayerStack)
-			//	layer->OnImGuiRender();
-			//m_ImGuiLayer->End();
+			renderer.Render();
+
+			// --------------------------------------------------------------------- //
 		}
 	}
 

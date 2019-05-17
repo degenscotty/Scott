@@ -27,7 +27,7 @@ namespace Scott
 			return;
 		}
 
-		SDL_SetRenderDrawColor(m_pRenderer, 150, 150, 150, 255);
+		SDL_SetRenderDrawColor(m_pRenderer, 25, 25, 25, 255);
 
 		int imgFlags = IMG_INIT_PNG;
 		if (!(IMG_Init(imgFlags) & imgFlags))
@@ -42,13 +42,18 @@ namespace Scott
 		return m_pRenderer;
 	}
 
+	void Renderer::ClearBuffer()
+	{
+		SDL_SetRenderDrawColor(m_pRenderer, 25, 25, 25, 255);
+		SDL_RenderClear(m_pRenderer);
+	}
+
 	void Renderer::Render()
 	{
-		SDL_RenderClear(m_pRenderer);
-
 		m_SceneManager.Render();
 
 		SDL_RenderPresent(m_pRenderer);
+		//SDL_GL_SwapWindow(Application::get().GetWindow().GetSDLWindow());
 	}
 
 	void Renderer::RenderTexture(const Texture2D& texture, float x, float y) const

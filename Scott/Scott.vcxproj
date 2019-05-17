@@ -142,6 +142,7 @@
   <ItemGroup>
     <ClInclude Include="src\Platform\SDL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\SDL\ImGuiSDLRenderer.h" />
+    <ClInclude Include="src\Platform\SDL\imgui_sdl.h" />
     <ClInclude Include="src\Platform\Windows\InputManager.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Scott.h" />
@@ -176,6 +177,7 @@
   <ItemGroup>
     <ClCompile Include="src\Platform\SDL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\SDL\ImGuiSDLRenderer.cpp" />
+    <ClCompile Include="src\Platform\SDL\imgui_sdl.cpp" />
     <ClCompile Include="src\Platform\Windows\InputManager.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Scott\Application.cpp" />
