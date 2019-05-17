@@ -40,9 +40,9 @@ void GameLayer::OnAttach()
 		m_pTextObject = new Scott::GameObject("TextObject");
 
 		scene->Add(m_pTextObject);
-		m_pTextObject->AddComponent(new Scott::TextComponent("WRESTLEMANIA.ttf", "TEST", 200));
+		m_pTextObject->AddComponent(new Scott::TextComponent("WRESTLEMANIA.ttf", "Scott Engine", 64));
 		Scott::TextComponent* textComponent = m_pTextObject->GetComponent<Scott::TextComponent>();
-		textComponent->SetColor(SDL_Color({ 150, 25, 25, 255 }));
+		textComponent->SetColor(SDL_Color({ 125, 25, 25, 255 }));
 
 		m_pTextObject->GetTransform()->TranslateWorld(640.0f, 360.0f);
 	}
