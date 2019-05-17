@@ -4,8 +4,7 @@
 #include <SDL.h>
 #include "Scott/Helpers/Texture2D.h"
 #include "Scott/SceneGraph/SceneManager.h"
-#include "Scott/Components/TextureComponent.h"
-#include "Scott/Components/TransformComponent.h"
+#include "Scott/Components/Components.h"
 
 namespace Scott
 {
@@ -21,8 +20,8 @@ namespace Scott
 
 		void RenderTexture(const Texture2D& texture, float x, float y) const;
 		void RenderTexture(const Texture2D& texture, float x, float y, float width, float height) const;
-		void RenderTextureComponent(TextureComponent* texComponent, TransformComponent* transfComponent);
-		//void RenderTextComponent(TextComponent* component);
+		void RenderTextureComponent(TextureComponent* textureComponent, TransformComponent* transfComponent);
+		void RenderTextComponent(TextComponent* textureComponent, TransformComponent* transfComponent);
 
 		SDL_Renderer* GetSDLRenderer();
 

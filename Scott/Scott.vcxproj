@@ -149,6 +149,7 @@
     <ClInclude Include="src\Scott\Application.h" />
     <ClInclude Include="src\Scott\Components\BaseComponent.h" />
     <ClInclude Include="src\Scott\Components\Components.h" />
+    <ClInclude Include="src\Scott\Components\TextComponent.h" />
     <ClInclude Include="src\Scott\Components\TextureComponent.h" />
     <ClInclude Include="src\Scott\Components\TransformComponent.h" />
     <ClInclude Include="src\Scott\Core.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="src\Scott\Events\KeyEvent.h" />
     <ClInclude Include="src\Scott\Events\MouseEvent.h" />
     <ClInclude Include="src\Scott\GameTime.h" />
+    <ClInclude Include="src\Scott\Helpers\Font.h" />
     <ClInclude Include="src\Scott\Helpers\ResourceManager.h" />
     <ClInclude Include="src\Scott\Helpers\Singleton.h" />
     <ClInclude Include="src\Scott\Helpers\Texture2D.h" />
@@ -182,6 +184,7 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Scott\Application.cpp" />
     <ClCompile Include="src\Scott\Components\BaseComponent.cpp" />
+    <ClCompile Include="src\Scott\Components\TextComponent.cpp" />
     <ClCompile Include="src\Scott\Components\TextureComponent.cpp" />
     <ClCompile Include="src\Scott\Components\TransformComponent.cpp" />
     <ClCompile Include="src\Scott\GameTime.cpp" />

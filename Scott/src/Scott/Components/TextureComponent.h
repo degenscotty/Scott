@@ -3,6 +3,7 @@
 
 #include "Scott/Helpers/Texture2D.h"
 #include <glm.hpp>
+#include <string>
 
 namespace Scott
 {
@@ -13,7 +14,7 @@ namespace Scott
 	class TextureComponent : public BaseComponent
 	{
 	public:
-		TextureComponent();
+		explicit TextureComponent(const std::string& file);
 		virtual ~TextureComponent() = default;
 
 		TextureComponent(const TextureComponent& other) = delete;
@@ -25,7 +26,6 @@ namespace Scott
 		virtual void Initialize() {}
 		virtual void Update() {}
 
-
 		void SetPivot(const glm::vec2& pivot);
 		void SetTexture(const std::string& file);
 
@@ -33,6 +33,7 @@ namespace Scott
 		const glm::vec2& GetPivot() { return m_Pivot; };
 
 	private:
+		std::string m_File;
 		Texture2D* m_pTexture;
 		glm::vec2 m_Pivot;
 

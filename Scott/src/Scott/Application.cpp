@@ -88,9 +88,6 @@ namespace Scott
 
 			renderer.ClearBuffer();
 
-			//glClearColor(0.1, 0.1, 0.1, 1);
-			//glClear(GL_COLOR_BUFFER_BIT);
-
 			m_ImGuiLayer->End();
 
 			for (Layer* layer : m_LayerStack)

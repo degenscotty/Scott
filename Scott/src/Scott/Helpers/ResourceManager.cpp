@@ -38,12 +38,12 @@ namespace Scott
 				SC_CORE_ERROR("ResourceManager::LoadTexture > Failed to load SDL_Surface: {0}", SDL_GetError());
 			}
 
-			SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer.GetSDLRenderer(), surface);
-			if (texture == nullptr)
+			SDL_Texture* pTexture = SDL_CreateTextureFromSurface(renderer.GetSDLRenderer(), surface);
+			if (pTexture == nullptr)
 			{
 				SC_CORE_ERROR("ResourceManager::LoadTexture > Failed to create texture: {0}", SDL_GetError());
 			}
-			m_Textures[file] = new Texture2D(texture);
+			m_Textures[file] = new Texture2D(pTexture);
 			return m_Textures[file];
 		}
 		else
@@ -51,5 +51,22 @@ namespace Scott
 			SC_CORE_ERROR("ResourceManager::LoadTexture > Renderer is invalid!");
 			return nullptr;
 		}
+	}
+
+	Font* ResourceManager::LoadFont(const std::pair<std::string, unsigned int>& fontData)
+	{
+		if (m_Fonts[fontData]) return m_Fonts[fontData];
+
+		std::string filePath = m_FolderPath + fontData.first;
+		TTF_Font* pFont = TTF_OpenFont(filePath.c_str(), fontData.second);
+
+		if (pFont == nullptr)
+		{
+			SC_CORE_ERROR("ResourceManager::LoadFont > Error loading Font: {0}", TTF_GetError());
+			return nullptr;
+		}
+
+		m_Fonts[fontData] = new Font(pFont);
+		return m_Fonts[fontData];
 	}
 }

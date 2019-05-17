@@ -18,6 +18,7 @@ namespace Scott
 		{
 			if (m_pTexture)
 				return m_pTexture;
+			SC_CORE_ERROR("Texture2D::GetSDLTexture() > Texture not available: m_pTexture = nullptr");
 			return nullptr;
 		};
 	private:

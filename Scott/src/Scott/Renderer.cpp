@@ -35,6 +35,12 @@ namespace Scott
 			SC_CORE_ERROR("WindowsWindow::Initialize( ) > error when calling IMG_Init: {0}", IMG_GetError());
 			return;
 		}
+
+		if (TTF_Init() == -1)
+		{
+			SC_CORE_ERROR("WindowsWindow::Initialize( ) > error when calling TTF_Init: {0}", TTF_GetError());
+			return;
+		}
 	}
 
 	SDL_Renderer* Renderer::GetSDLRenderer()
@@ -66,16 +72,16 @@ namespace Scott
 
 	}
 
-	void Renderer::RenderTextureComponent(TextureComponent* texComponent, TransformComponent* transfComponent)
+	void Renderer::RenderTextureComponent(TextureComponent* textureComponent, TransformComponent* transfComponent)
 	{
 		SDL_Rect dest;
 		TransformComponent* pTransform = transfComponent;
-		Texture2D* pTex = texComponent->GetTexture();
+		Texture2D* pTexture = textureComponent->GetTexture();
 
 		dest.x = static_cast<int>(pTransform->GetWorldPosition().x);
 		dest.y = static_cast<int>(pTransform->GetWorldPosition().y);
 
-		SDL_QueryTexture(pTex->GetSDLTexture(), nullptr, nullptr, &dest.w, &dest.h);
+		SDL_QueryTexture(pTexture->GetSDLTexture(), nullptr, nullptr, &dest.w, &dest.h);
 
 		dest.w = int(dest.w * pTransform->GetWorldScale().x);
 		dest.h = int(dest.h * pTransform->GetWorldScale().y);
@@ -93,6 +99,26 @@ namespace Scott
 		//	pPivot->x = static_cast<int>(transfComponent->GetPivot()->x);
 		//	pPivot->y = static_cast<int>(transfComponent->GetPivot()->y);
 		//}
-		SDL_RenderCopyEx(GetSDLRenderer(), pTex->GetSDLTexture(), nullptr, &dest, pTransform->GetWorldRotation(), nullptr, SDL_FLIP_NONE);
+		SDL_RenderCopyEx(GetSDLRenderer(), pTexture->GetSDLTexture(), nullptr, &dest, pTransform->GetWorldRotation(), nullptr, SDL_FLIP_NONE);
+	}
+
+	void Renderer::RenderTextComponent(TextComponent* textureComponent, TransformComponent* transfComponent)
+	{
+		SDL_Rect dest;
+		TransformComponent* pTransform = transfComponent;
+		Texture2D* pTexture = textureComponent->GetTexture();
+
+		dest.x = static_cast<int>(pTransform->GetWorldPosition().x);
+		dest.y = static_cast<int>(pTransform->GetWorldPosition().y);
+
+		SDL_QueryTexture(pTexture->GetSDLTexture(), nullptr, nullptr, &dest.w, &dest.h);
+
+		dest.w = int(dest.w * pTransform->GetWorldScale().x);
+		dest.h = int(dest.h * pTransform->GetWorldScale().y);
+
+		dest.x = dest.x - (int)(dest.w / 2.0f);
+		dest.y = dest.y - (int)(dest.h / 2.0f);
+
+		SDL_RenderCopyEx(GetSDLRenderer(), pTexture->GetSDLTexture(), nullptr, &dest, pTransform->GetWorldRotation(), nullptr, SDL_FLIP_NONE);
 	}
 }

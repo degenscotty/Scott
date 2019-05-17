@@ -54,24 +54,24 @@ namespace Scott
 			SDL_WINDOW_OPENGL |
 			SDL_WINDOW_RESIZABLE);
 
-		// Set the Projection matrix to the identity matrix
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
+		//// Set the Projection matrix to the identity matrix
+		//glMatrixMode(GL_PROJECTION);
+		//glLoadIdentity();
 
-		// Set up a two-dimensional orthographic viewing region.
-		gluOrtho2D(0, m_Data.Width, 0, m_Data.Height); // y from bottom to top
+		//// Set up a two-dimensional orthographic viewing region.
+		//gluOrtho2D(0, m_Data.Width, 0, m_Data.Height); // y from bottom to top
 
-		// Set the viewport to the client window area
-		// The viewport is the rectangular region of the window where the image is drawn.
-		glViewport(0, 0, int(m_Data.Width), int(m_Data.Height));
+		//// Set the viewport to the client window area
+		//// The viewport is the rectangular region of the window where the image is drawn.
+		//glViewport(0, 0, int(m_Data.Width), int(m_Data.Height));
 
-		// Set the Model view matrix to the identity matrix
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
+		//// Set the Model view matrix to the identity matrix
+		//glMatrixMode(GL_MODELVIEW);
+		//glLoadIdentity();
 
-		// Enable color blending and use alpha blending
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		//// Enable color blending and use alpha blending
+		//glEnable(GL_BLEND);
+		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		if (m_pWindow == nullptr)
 		{

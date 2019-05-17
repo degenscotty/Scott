@@ -7,7 +7,9 @@
 
 GameLayer::GameLayer()
 	: m_SceneManager{ Scott::SceneManager::GetInstance() }
+	, m_Renderer{ Scott::Renderer::GetInstance() }
 	, m_pTestObject{ nullptr }
+	, m_pTextObject{ nullptr }
 {
 }
 
@@ -20,17 +22,31 @@ void GameLayer::OnAttach()
 	m_SceneManager.CreateScene("TestScene");
 	Scott::Scene* scene = m_SceneManager.GetScene("TestScene");
 
-	m_pTestObject = new Scott::GameObject("TestObject");
+	// --------------------------- PNG ----------------------------------- //
+	{
+		m_pTestObject = new Scott::GameObject("TestObject");
 
-	scene->Add(m_pTestObject);
+		scene->Add(m_pTestObject);
+		m_pTestObject->AddComponent(new Scott::TextureComponent("TestPNG.png"));
+		Scott::TextureComponent* textureComponent = m_pTestObject->GetComponent<Scott::TextureComponent>();
 
-	m_pTestObject->AddComponent(new Scott::TextureComponent());
-	Scott::TextureComponent* texComponent = m_pTestObject->GetComponent<Scott::TextureComponent>();
+		m_pTestObject->GetTransform()->TranslateWorld(400.0f, 360.0f);
+		m_pTestObject->GetTransform()->ScaleWorld(0.2f, 0.2f);
+	}
+	// -------------------------------------------------------------------- //
 
-	texComponent->SetTexture("TestPNG.png");
-	texComponent->SetPivot(glm::vec2(640.0f, 360.0f));
-	m_pTestObject->GetTransform()->TranslateWorld(640.0f, 360.0f);
-	m_pTestObject->GetTransform()->ScaleWorld(0.2f, 0.2f);
+	// --------------------------- TEXT ----------------------------------- //
+	{
+		m_pTextObject = new Scott::GameObject("TextObject");
+
+		scene->Add(m_pTextObject);
+		m_pTextObject->AddComponent(new Scott::TextComponent("WRESTLEMANIA.ttf", "TEST", 200));
+		Scott::TextComponent* textComponent = m_pTextObject->GetComponent<Scott::TextComponent>();
+		textComponent->SetColor(SDL_Color({ 150, 25, 25, 255 }));
+
+		m_pTextObject->GetTransform()->TranslateWorld(640.0f, 360.0f);
+	}
+	// -------------------------------------------------------------------- //
 }
 
 void GameLayer::OnDetach()
@@ -63,13 +79,4 @@ void GameLayer::OnUpdate()
 
 void GameLayer::Render()
 {
-	glLineWidth(2.0f);
-	glBegin(GL_LINE_LOOP);
-	{
-		glVertex2f(500, 500);
-		glVertex2f(500, 510);
-		glVertex2f(510, 510);
-		glVertex2f(510, 500);
-	}
-	glEnd();
 }
