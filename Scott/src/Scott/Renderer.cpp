@@ -6,7 +6,6 @@ namespace Scott
 {
 	Renderer::Renderer()
 		: m_pRenderer{ nullptr }
-		, m_SceneManager{ SceneManager::GetInstance() }
 	{
 	}
 
@@ -56,8 +55,6 @@ namespace Scott
 
 	void Renderer::Render()
 	{
-		m_SceneManager.Render();
-
 		SDL_RenderPresent(m_pRenderer);
 		//SDL_GL_SwapWindow(Application::get().GetWindow().GetSDLWindow());
 	}
@@ -86,8 +83,8 @@ namespace Scott
 		dest.w = int(dest.w * pTransform->GetWorldScale().x);
 		dest.h = int(dest.h * pTransform->GetWorldScale().y);
 
-		dest.x = dest.x - (int)(dest.w / 2.0f);
-		dest.y = dest.y - (int)(dest.h / 2.0f);
+		//dest.x = dest.x - (int)(dest.w / 2.0f);
+		//dest.y = dest.y - (int)(dest.h / 2.0f);
 
 		//SDL_Point* pPivot = new SDL_Point();
 		//pPivot->x = static_cast<int>(texComponent->GetPivot().x);
@@ -116,8 +113,8 @@ namespace Scott
 		dest.w = int(dest.w * pTransform->GetWorldScale().x);
 		dest.h = int(dest.h * pTransform->GetWorldScale().y);
 
-		dest.x = dest.x - (int)(dest.w / 2.0f);
-		dest.y = dest.y - (int)(dest.h / 2.0f);
+		//dest.x = dest.x - (int)(dest.w / 2.0f);
+		//dest.y = dest.y - (int)(dest.h / 2.0f);
 
 		SDL_RenderCopyEx(GetSDLRenderer(), pTexture->GetSDLTexture(), nullptr, &dest, pTransform->GetWorldRotation(), nullptr, SDL_FLIP_NONE);
 	}

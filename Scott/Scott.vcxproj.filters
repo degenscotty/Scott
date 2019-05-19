@@ -36,6 +36,9 @@
     <ClInclude Include="src\Platform\SDL\ImGuiSDLRenderer.h">
       <Filter>Platform\SDL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\SDL\imgui_sdl.h">
+      <Filter>Platform\SDL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\InputManager.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -47,6 +50,12 @@
       <Filter>Scott</Filter>
     </ClInclude>
     <ClInclude Include="src\Scott\Components\BaseComponent.h">
+      <Filter>Scott\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scott\Components\Components.h">
+      <Filter>Scott\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scott\Components\TextComponent.h">
       <Filter>Scott\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\Scott\Components\TextureComponent.h">
@@ -76,7 +85,13 @@
     <ClInclude Include="src\Scott\GameTime.h">
       <Filter>Scott</Filter>
     </ClInclude>
+    <ClInclude Include="src\Scott\Helpers\Font.h">
+      <Filter>Scott\Helpers</Filter>
+    </ClInclude>
     <ClInclude Include="src\Scott\Helpers\ResourceManager.h">
+      <Filter>Scott\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scott\Helpers\Singleton.h">
       <Filter>Scott\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="src\Scott\Helpers\Texture2D.h">
@@ -116,17 +131,15 @@
       <Filter>Scott</Filter>
     </ClInclude>
     <ClInclude Include="src\scpch.h" />
-    <ClInclude Include="src\Scott\Helpers\Singleton.h" />
-    <ClInclude Include="src\Scott\Components\Components.h" />
-    <ClInclude Include="src\Platform\SDL\imgui_sdl.h" />
-    <ClInclude Include="src\Scott\Components\TextComponent.h" />
-    <ClInclude Include="src\Scott\Helpers\Font.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\SDL\ImGuiOpenGLRenderer.cpp">
       <Filter>Platform\SDL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\SDL\ImGuiSDLRenderer.cpp">
+      <Filter>Platform\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\SDL\imgui_sdl.cpp">
       <Filter>Platform\SDL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\InputManager.cpp">
@@ -139,6 +152,9 @@
       <Filter>Scott</Filter>
     </ClCompile>
     <ClCompile Include="src\Scott\Components\BaseComponent.cpp">
+      <Filter>Scott\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scott\Components\TextComponent.cpp">
       <Filter>Scott\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\Scott\Components\TextureComponent.cpp">
@@ -178,7 +194,5 @@
       <Filter>Scott\SceneGraph</Filter>
     </ClCompile>
     <ClCompile Include="src\scpch.cpp" />
-    <ClCompile Include="src\Platform\SDL\imgui_sdl.cpp" />
-    <ClCompile Include="src\Scott\Components\TextComponent.cpp" />
   </ItemGroup>
 </Project>

@@ -88,14 +88,17 @@ namespace Scott
 
 			renderer.ClearBuffer();
 
-			m_ImGuiLayer->End();
+			sceneManager.Render();
 
+			m_ImGuiLayer->End();
+			
 			for (Layer* layer : m_LayerStack)
 			{
 				layer->Render();
 			}
 
 			renderer.Render();
+			
 
 			// --------------------------------------------------------------------- //
 		}

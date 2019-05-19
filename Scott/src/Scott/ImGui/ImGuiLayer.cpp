@@ -14,7 +14,7 @@ namespace Scott
 {
 	ImGuiLayer::ImGuiLayer()
 		: Layer("ImGuiLayer")
-		, show_demo_window{ true }
+		, show_demo_window{ false }
 		, m_Counter{ 60 }
 		, m_Fps{}
 	{
@@ -103,8 +103,8 @@ namespace Scott
 		if (show_demo_window)
 			ImGui::ShowDemoWindow(&show_demo_window);
 
-		ImGui::Begin("Test Window");
-		ImGui::Checkbox("Demo Window", &show_demo_window);
+		ImGui::Begin("FPS Counter");
+		//ImGui::Checkbox("Demo Window", &show_demo_window);
 
 		ImGui::Text("%.0f FPS", ImGui::GetIO().Framerate);
 		ImGui::Text("%.0f Times PS GameLoop", (float)m_Fps);

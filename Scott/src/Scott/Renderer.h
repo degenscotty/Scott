@@ -27,7 +27,6 @@ namespace Scott
 
 	private:
 		SDL_Renderer* m_pRenderer;
-		SceneManager& m_SceneManager;
 	};
 }
 

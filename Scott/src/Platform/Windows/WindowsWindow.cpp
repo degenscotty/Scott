@@ -51,8 +51,7 @@ namespace Scott
 			SDL_WINDOWPOS_UNDEFINED,
 			(int)props.Width,
 			(int)props.Height,
-			SDL_WINDOW_OPENGL |
-			SDL_WINDOW_RESIZABLE);
+			SDL_WINDOW_OPENGL);
 
 		//// Set the Projection matrix to the identity matrix
 		//glMatrixMode(GL_PROJECTION);

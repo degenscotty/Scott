@@ -14,8 +14,8 @@ namespace Scott {
 		unsigned int Height;
 
 		WindowProps(const std::string& title = "Scott Engine",
-			unsigned int width = 1280,
-			unsigned int height = 720)
+			unsigned int width = 448,
+			unsigned int height = 576)
 			: Title(title), Width(width), Height(height)
 		{
 		}
