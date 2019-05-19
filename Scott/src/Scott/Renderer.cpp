@@ -64,9 +64,22 @@ namespace Scott
 
 	}
 
-	void Renderer::RenderTexture(const Texture2D& texture, float x, float y, float width, float height) const
+	void Renderer::RenderTexture(SDL_Texture* texture, int x, int y, int width, int height)
 	{
+		SDL_Rect dest;
 
+		dest.x = (int)x;
+		dest.y = (int)y;
+
+		SDL_QueryTexture(texture, nullptr, nullptr, &dest.w, &dest.h);
+
+		dest.w = int(width);
+		dest.h = int(height);
+
+		//dest.x = dest.x - (int)(dest.w / 2.0f);
+		//dest.y = dest.y - (int)(dest.h / 2.0f);
+
+		SDL_RenderCopyEx(GetSDLRenderer(), texture, nullptr, &dest, 0, nullptr, SDL_FLIP_NONE);
 	}
 
 	void Renderer::RenderTextureComponent(TextureComponent* textureComponent, TransformComponent* transfComponent)

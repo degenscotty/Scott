@@ -15,11 +15,25 @@ public:
 	void OnUpdate() override;
 	void Render() override;
 
+	wchar_t GetTile(int x, int y);
+	void SetTile(int x, int y, wchar_t c);
+
 private:
 	Scott::SceneManager& m_SceneManager;
 	Scott::Renderer& m_Renderer;
 
 	Scott::GameObject* m_pTestObject;
 	Scott::GameObject* m_pTextObject;
+	Scott::GameObject* m_pPlayer;
+
+
+	// Level
+	int m_LevelWidth;
+	int m_LevelHeight;
+
+	int m_TileSize;
+
+	std::wstring m_LevelString;
+	SDL_Texture* m_BlackTexture;
 };
 

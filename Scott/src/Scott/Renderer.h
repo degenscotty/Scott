@@ -19,7 +19,7 @@ namespace Scott
 		void ClearBuffer();
 
 		void RenderTexture(const Texture2D& texture, float x, float y) const;
-		void RenderTexture(const Texture2D& texture, float x, float y, float width, float height) const;
+		void RenderTexture(SDL_Texture* texture, int x, int y, int width, int height);
 		void RenderTextureComponent(TextureComponent* textureComponent, TransformComponent* transfComponent);
 		void RenderTextComponent(TextComponent* textureComponent, TransformComponent* transfComponent);
 
