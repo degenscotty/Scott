@@ -140,6 +140,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Scott\DigDug\Player.h" />
+    <ClInclude Include="src\Scott\Manager\LevelManager.h" />
     <ClInclude Include="src\Platform\SDL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\SDL\ImGuiSDLRenderer.h" />
     <ClInclude Include="src\Platform\SDL\imgui_sdl.h" />
@@ -177,6 +179,8 @@
     <ClInclude Include="src\scpch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Scott\DigDug\Player.cpp" />
+    <ClCompile Include="src\Scott\Manager\LevelManager.cpp" />
     <ClCompile Include="src\Platform\SDL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\SDL\ImGuiSDLRenderer.cpp" />
     <ClCompile Include="src\Platform\SDL\imgui_sdl.cpp" />
@@ -209,4 +213,4 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-</Project> 
+</Project>

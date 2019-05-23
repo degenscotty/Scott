@@ -5,7 +5,7 @@
 
 namespace Scott
 {
-	class SCOTT_API GameTime : public Singleton<GameTime>
+	class GameTime : public Singleton<GameTime>
 	{
 	public:
 		~GameTime() = default;

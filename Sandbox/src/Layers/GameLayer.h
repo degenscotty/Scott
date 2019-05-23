@@ -2,6 +2,8 @@
 #include "Scott/Layer.h"
 #include "Scott/SceneGraph/SceneManager.h"
 #include "Scott/SceneGraph/GameObject.h"
+#include "Scott/Manager/LevelManager.h"
+#include "Scott/DigDug/Player.h"
 #include "Scott/Renderer.h"
 
 class GameLayer : public Scott::Layer
@@ -15,25 +17,14 @@ public:
 	void OnUpdate() override;
 	void Render() override;
 
-	wchar_t GetTile(int x, int y);
-	void SetTile(int x, int y, wchar_t c);
-
 private:
 	Scott::SceneManager& m_SceneManager;
 	Scott::Renderer& m_Renderer;
 
 	Scott::GameObject* m_pTestObject;
 	Scott::GameObject* m_pTextObject;
-	Scott::GameObject* m_pPlayer;
+	Scott::Player* m_pPlayer;
 
-
-	// Level
-	int m_LevelWidth;
-	int m_LevelHeight;
-
-	int m_TileSize;
-
-	std::wstring m_LevelString;
-	SDL_Texture* m_BlackTexture;
+	Scott::LevelManager* m_pLevelManager;
 };
 

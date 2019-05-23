@@ -41,6 +41,8 @@ namespace Scott
 		{
 			child->RootUpdate();
 		}
+
+		Update();
 	}
 
 	void GameObject::RootRender()
@@ -54,6 +56,8 @@ namespace Scott
 		{
 			child->Render();
 		}
+
+		Render();
 	}
 
 	void GameObject::AddChild(GameObject* gameObject)
