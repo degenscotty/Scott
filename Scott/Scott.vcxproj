@@ -140,9 +140,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Scott\Components\SpriteComponent.h" />
-    <ClInclude Include="src\Scott\DigDug\Player.h" />
-    <ClInclude Include="src\Scott\Manager\LevelManager.h" />
     <ClInclude Include="src\Platform\SDL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\SDL\ImGuiSDLRenderer.h" />
     <ClInclude Include="src\Platform\SDL\imgui_sdl.h" />
@@ -152,10 +149,12 @@
     <ClInclude Include="src\Scott\Application.h" />
     <ClInclude Include="src\Scott\Components\BaseComponent.h" />
     <ClInclude Include="src\Scott\Components\Components.h" />
+    <ClInclude Include="src\Scott\Components\SpriteComponent.h" />
     <ClInclude Include="src\Scott\Components\TextComponent.h" />
     <ClInclude Include="src\Scott\Components\TextureComponent.h" />
     <ClInclude Include="src\Scott\Components\TransformComponent.h" />
     <ClInclude Include="src\Scott\Core.h" />
+    <ClInclude Include="src\Scott\DigDug\Player.h" />
     <ClInclude Include="src\Scott\EntryPoint.h" />
     <ClInclude Include="src\Scott\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Scott\Events\Event.h" />
@@ -172,6 +171,7 @@
     <ClInclude Include="src\Scott\Layer.h" />
     <ClInclude Include="src\Scott\LayerStack.h" />
     <ClInclude Include="src\Scott\Log.h" />
+    <ClInclude Include="src\Scott\Manager\LevelManager.h" />
     <ClInclude Include="src\Scott\Renderer.h" />
     <ClInclude Include="src\Scott\SceneGraph\GameObject.h" />
     <ClInclude Include="src\Scott\SceneGraph\Scene.h" />
@@ -180,9 +180,6 @@
     <ClInclude Include="src\scpch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Scott\Components\SpriteComponent.cpp" />
-    <ClCompile Include="src\Scott\DigDug\Player.cpp" />
-    <ClCompile Include="src\Scott\Manager\LevelManager.cpp" />
     <ClCompile Include="src\Platform\SDL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\SDL\ImGuiSDLRenderer.cpp" />
     <ClCompile Include="src\Platform\SDL\imgui_sdl.cpp" />
@@ -190,15 +187,18 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Scott\Application.cpp" />
     <ClCompile Include="src\Scott\Components\BaseComponent.cpp" />
+    <ClCompile Include="src\Scott\Components\SpriteComponent.cpp" />
     <ClCompile Include="src\Scott\Components\TextComponent.cpp" />
     <ClCompile Include="src\Scott\Components\TextureComponent.cpp" />
     <ClCompile Include="src\Scott\Components\TransformComponent.cpp" />
+    <ClCompile Include="src\Scott\DigDug\Player.cpp" />
     <ClCompile Include="src\Scott\GameTime.cpp" />
     <ClCompile Include="src\Scott\Helpers\ResourceManager.cpp" />
     <ClCompile Include="src\Scott\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Scott\Layer.cpp" />
     <ClCompile Include="src\Scott\LayerStack.cpp" />
     <ClCompile Include="src\Scott\Log.cpp" />
+    <ClCompile Include="src\Scott\Manager\LevelManager.cpp" />
     <ClCompile Include="src\Scott\Renderer.cpp" />
     <ClCompile Include="src\Scott\SceneGraph\GameObject.cpp" />
     <ClCompile Include="src\Scott\SceneGraph\Scene.cpp" />

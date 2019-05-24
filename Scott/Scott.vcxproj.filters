@@ -16,6 +16,9 @@
     <Filter Include="Scott\Components">
       <UniqueIdentifier>{E7B8020B-D3B1-215D-FCE3-06E2E83B0169}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scott\DigDug">
+      <UniqueIdentifier>{B5656629-A1C8-F5CD-4A4E-2E843690C150}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Scott\Events">
       <UniqueIdentifier>{B666A62C-A2C9-35D1-4B4F-6E8737910154}</UniqueIdentifier>
     </Filter>
@@ -24,6 +27,9 @@
     </Filter>
     <Filter Include="Scott\ImGui">
       <UniqueIdentifier>{BC1DC49C-28D3-3C92-B1C7-36691D7C3396}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scott\Manager">
+      <UniqueIdentifier>{3C51E4F8-A811-602F-714C-A9ACDDCBA40B}</UniqueIdentifier>
     </Filter>
     <Filter Include="Scott\SceneGraph">
       <UniqueIdentifier>{81F5C4BF-6DEE-E311-9620-C9968278C31D}</UniqueIdentifier>
@@ -55,6 +61,9 @@
     <ClInclude Include="src\Scott\Components\Components.h">
       <Filter>Scott\Components</Filter>
     </ClInclude>
+    <ClInclude Include="src\Scott\Components\SpriteComponent.h">
+      <Filter>Scott\Components</Filter>
+    </ClInclude>
     <ClInclude Include="src\Scott\Components\TextComponent.h">
       <Filter>Scott\Components</Filter>
     </ClInclude>
@@ -66,6 +75,9 @@
     </ClInclude>
     <ClInclude Include="src\Scott\Core.h">
       <Filter>Scott</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scott\DigDug\Player.h">
+      <Filter>Scott\DigDug</Filter>
     </ClInclude>
     <ClInclude Include="src\Scott\EntryPoint.h">
       <Filter>Scott</Filter>
@@ -115,6 +127,9 @@
     <ClInclude Include="src\Scott\Log.h">
       <Filter>Scott</Filter>
     </ClInclude>
+    <ClInclude Include="src\Scott\Manager\LevelManager.h">
+      <Filter>Scott\Manager</Filter>
+    </ClInclude>
     <ClInclude Include="src\Scott\Renderer.h">
       <Filter>Scott</Filter>
     </ClInclude>
@@ -131,9 +146,6 @@
       <Filter>Scott</Filter>
     </ClInclude>
     <ClInclude Include="src\scpch.h" />
-    <ClInclude Include="src\Scott\Manager\LevelManager.h" />
-    <ClInclude Include="src\Scott\DigDug\Player.h" />
-    <ClInclude Include="src\Scott\Components\SpriteComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\SDL\ImGuiOpenGLRenderer.cpp">
@@ -157,6 +169,9 @@
     <ClCompile Include="src\Scott\Components\BaseComponent.cpp">
       <Filter>Scott\Components</Filter>
     </ClCompile>
+    <ClCompile Include="src\Scott\Components\SpriteComponent.cpp">
+      <Filter>Scott\Components</Filter>
+    </ClCompile>
     <ClCompile Include="src\Scott\Components\TextComponent.cpp">
       <Filter>Scott\Components</Filter>
     </ClCompile>
@@ -165,6 +180,9 @@
     </ClCompile>
     <ClCompile Include="src\Scott\Components\TransformComponent.cpp">
       <Filter>Scott\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scott\DigDug\Player.cpp">
+      <Filter>Scott\DigDug</Filter>
     </ClCompile>
     <ClCompile Include="src\Scott\GameTime.cpp">
       <Filter>Scott</Filter>
@@ -184,6 +202,9 @@
     <ClCompile Include="src\Scott\Log.cpp">
       <Filter>Scott</Filter>
     </ClCompile>
+    <ClCompile Include="src\Scott\Manager\LevelManager.cpp">
+      <Filter>Scott\Manager</Filter>
+    </ClCompile>
     <ClCompile Include="src\Scott\Renderer.cpp">
       <Filter>Scott</Filter>
     </ClCompile>
@@ -197,8 +218,5 @@
       <Filter>Scott\SceneGraph</Filter>
     </ClCompile>
     <ClCompile Include="src\scpch.cpp" />
-    <ClCompile Include="src\Scott\Manager\LevelManager.cpp" />
-    <ClCompile Include="src\Scott\DigDug\Player.cpp" />
-    <ClCompile Include="src\Scott\Components\SpriteComponent.cpp" />
   </ItemGroup>
 </Project>
