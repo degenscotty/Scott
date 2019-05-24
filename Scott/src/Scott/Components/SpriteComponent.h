@@ -1,5 +1,6 @@
 #pragma once
 #include "Scott/Components/BaseComponent.h"
+#include "Scott/GameTime.h"
 
 #include "Scott/Helpers/Texture2D.h"
 #include <glm.hpp>
@@ -14,7 +15,7 @@ namespace Scott
 	class SpriteComponent : public BaseComponent
 	{
 	public:
-		explicit SpriteComponent(const std::string& file);
+		explicit SpriteComponent(const std::string& file, int rows, int cols);
 		virtual ~SpriteComponent() = default;
 
 		SpriteComponent(const SpriteComponent& other) = delete;
@@ -23,11 +24,14 @@ namespace Scott
 		SpriteComponent& operator=(SpriteComponent&& other) noexcept = delete;
 
 		void Render() override;
+		void Update() override;
 		virtual void Initialize() {}
-		virtual void Update() {}
 
 		void SetPivot(const glm::vec2& pivot);
 		void SetTexture(const std::string& file);
+		void SetClipIndex(int index);
+		void AddClip(int clipSize);
+		void SetFlip(const SDL_RendererFlip& flip);
 
 		Texture2D* GetTexture() { return m_pTexture; };
 		const glm::vec2& GetPivot() { return m_Pivot; };
@@ -38,6 +42,20 @@ namespace Scott
 		glm::vec2 m_Pivot;
 
 		Renderer& m_Renderer;
+		GameTime& m_GameTime;
+
+		int m_Cols;
+		int m_Rows;
+		float m_AnimTime;
+		int m_FramesPerSecond;
+		float m_ClipWidth;
+		float m_ClipHeight;
+		int m_AnimFrame;
+
+		int m_ClipIndex;
+
+		std::vector<unsigned int> m_Clips;
+		SDL_RendererFlip m_Flip;
 	};
 }
 

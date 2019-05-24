@@ -11,15 +11,23 @@ namespace Scott
 		, m_State{ State::Idle }
 		, m_Direction{ Direction::Right }
 		, m_MoveSpeed{ 60.0f }
-		, m_Transform{ GetComponent<TransformComponent>() }
+		, m_pTransform{ GetComponent<TransformComponent>() }
+		, m_pSpriteComponent{ nullptr }
 		, m_GameTime{ GameTime::GetInstance() }
 		, m_LevelManager{ LevelManager::GetInstance() }
+		, m_ClipIndex{}
+		, m_Flip{ SDL_RendererFlip::SDL_FLIP_NONE }
 	{
-		AddComponent(new TextureComponent("player.png"));
-		m_Transform->TranslateWorld(0.0f, 64.0f);
-		m_Destination = m_Transform->GetWorldPosition();
-	}
+		AddComponent(new SpriteComponent("SpriteSheet.png", 2, 2));
+		m_pSpriteComponent = GetComponent<SpriteComponent>();
+		m_pSpriteComponent->AddClip(2);
+		m_pSpriteComponent->AddClip(2);
+		m_pSpriteComponent->AddClip(1);
+		m_pSpriteComponent->SetClipIndex(2);
 
+		m_pTransform->TranslateWorld(0.0f, 64.0f);
+		m_Destination = m_pTransform->GetWorldPosition();
+	}
 
 	Player::~Player()
 	{
@@ -27,53 +35,57 @@ namespace Scott
 
 	void Player::MoveNextUp(const Direction& nextDirection)
 	{
-		if (m_Transform->GetWorldPosition().y - (m_MoveSpeed * m_GameTime.GetElapsedSec()) < m_Destination.y)
+		if (m_pTransform->GetWorldPosition().y - (m_MoveSpeed * m_GameTime.GetElapsedSec()) < m_Destination.y)
 		{
-			m_Transform->TranslateWorld(m_Destination);
+			m_pTransform->TranslateWorld(m_Destination);
 			m_Direction = nextDirection;
 		}
 		else
 		{
-			m_Transform->MoveWorld(0, -(m_MoveSpeed * m_GameTime.GetElapsedSec()));
+			m_pTransform->MoveWorld(0, -(m_MoveSpeed * m_GameTime.GetElapsedSec()));
+			m_State = State::MoveUp;
 		}
 	}
 
 	void Player::MoveNextDown(const Direction& nextDirection)
 	{
-		if (m_Transform->GetWorldPosition().y + (m_MoveSpeed * m_GameTime.GetElapsedSec()) > m_Destination.y)
+		if (m_pTransform->GetWorldPosition().y + (m_MoveSpeed * m_GameTime.GetElapsedSec()) > m_Destination.y)
 		{
-			m_Transform->TranslateWorld(m_Destination);
+			m_pTransform->TranslateWorld(m_Destination);
 			m_Direction = nextDirection;
 		}
 		else
 		{
-			m_Transform->MoveWorld(0, +(m_MoveSpeed * m_GameTime.GetElapsedSec()));
+			m_pTransform->MoveWorld(0, +(m_MoveSpeed * m_GameTime.GetElapsedSec()));
+			m_State = State::MoveDown;
 		}
 	}
 
 	void Player::MoveNextLeft(const Direction& nextDirection)
 	{
-		if (m_Transform->GetWorldPosition().x - (m_MoveSpeed * m_GameTime.GetElapsedSec()) < m_Destination.x)
+		if (m_pTransform->GetWorldPosition().x - (m_MoveSpeed * m_GameTime.GetElapsedSec()) < m_Destination.x)
 		{
-			m_Transform->TranslateWorld(m_Destination);
+			m_pTransform->TranslateWorld(m_Destination);
 			m_Direction = nextDirection;
 		}
 		else
 		{
-			m_Transform->MoveWorld(-(m_MoveSpeed * m_GameTime.GetElapsedSec()), 0);
+			m_pTransform->MoveWorld(-(m_MoveSpeed * m_GameTime.GetElapsedSec()), 0);
+			m_State = State::MoveLeft;
 		}
 	}
 
 	void Player::MoveNextRight(const Direction& nextDirection)
 	{
-		if (m_Transform->GetWorldPosition().x + (m_MoveSpeed * m_GameTime.GetElapsedSec()) > m_Destination.x)
+		if (m_pTransform->GetWorldPosition().x + (m_MoveSpeed * m_GameTime.GetElapsedSec()) > m_Destination.x)
 		{
-			m_Transform->TranslateWorld(m_Destination);
+			m_pTransform->TranslateWorld(m_Destination);
 			m_Direction = nextDirection;
 		}
 		else
 		{
-			m_Transform->MoveWorld(+(m_MoveSpeed * m_GameTime.GetElapsedSec()), 0);
+			m_pTransform->MoveWorld(+(m_MoveSpeed * m_GameTime.GetElapsedSec()), 0);
+			m_State = State::MoveRight;
 		}
 	}
 
@@ -81,14 +93,14 @@ namespace Scott
 	{
 		if (Input::IsKeyPressed(KEY_UP))
 		{
-			if (m_Destination == m_Transform->GetWorldPosition() || m_Direction == Direction::Up || m_Direction == Direction::Down)
+			if (m_Destination == m_pTransform->GetWorldPosition() || m_Direction == Direction::Up || m_Direction == Direction::Down)
 			{
-				m_Transform->MoveWorld(0, -(m_MoveSpeed * m_GameTime.GetElapsedSec()));
+				m_pTransform->MoveWorld(0, -(m_MoveSpeed * m_GameTime.GetElapsedSec()));
 
 				m_Direction = Direction::Up;
 				m_State = State::MoveUp;
 
-				if (m_Transform->GetWorldPosition().y < m_Destination.y)
+				if (m_pTransform->GetWorldPosition().y < m_Destination.y)
 				{
 					m_Destination.y -= 32;
 				}
@@ -104,14 +116,14 @@ namespace Scott
 		}
 		else if (Input::IsKeyPressed(KEY_DOWN))
 		{
-			if (m_Destination == m_Transform->GetWorldPosition() || m_Direction == Direction::Up || m_Direction == Direction::Down)
+			if (m_Destination == m_pTransform->GetWorldPosition() || m_Direction == Direction::Up || m_Direction == Direction::Down)
 			{
-				m_Transform->MoveWorld(0, +(m_MoveSpeed * m_GameTime.GetElapsedSec()));
+				m_pTransform->MoveWorld(0, +(m_MoveSpeed * m_GameTime.GetElapsedSec()));
 
 				m_Direction = Direction::Down;
 				m_State = State::MoveDown;
 
-				if (m_Transform->GetWorldPosition().y > m_Destination.y)
+				if (m_pTransform->GetWorldPosition().y > m_Destination.y)
 				{
 					m_Destination.y += 32;
 				}
@@ -127,14 +139,14 @@ namespace Scott
 		}
 		else if (Input::IsKeyPressed(KEY_LEFT))
 		{
-			if (m_Destination == m_Transform->GetWorldPosition() || m_Direction == Direction::Left || m_Direction == Direction::Right)
+			if (m_Destination == m_pTransform->GetWorldPosition() || m_Direction == Direction::Left || m_Direction == Direction::Right)
 			{
-				m_Transform->MoveWorld(-(m_MoveSpeed * m_GameTime.GetElapsedSec()), 0);
+				m_pTransform->MoveWorld(-(m_MoveSpeed * m_GameTime.GetElapsedSec()), 0);
 
 				m_Direction = Direction::Left;
 				m_State = State::MoveLeft;
 
-				if (m_Transform->GetWorldPosition().x < m_Destination.x)
+				if (m_pTransform->GetWorldPosition().x < m_Destination.x)
 				{
 					m_Destination.x -= 32;
 				}
@@ -150,14 +162,14 @@ namespace Scott
 		}
 		else if (Input::IsKeyPressed(KEY_RIGHT))
 		{
-			if (m_Destination == m_Transform->GetWorldPosition() || m_Direction == Direction::Left || m_Direction == Direction::Right)
+			if (m_Destination == m_pTransform->GetWorldPosition() || m_Direction == Direction::Left || m_Direction == Direction::Right)
 			{
-				m_Transform->MoveWorld(+(m_MoveSpeed * m_GameTime.GetElapsedSec()), 0);
+				m_pTransform->MoveWorld(+(m_MoveSpeed * m_GameTime.GetElapsedSec()), 0);
 
 				m_Direction = Direction::Right;
 				m_State = State::MoveRight;
 
-				if (m_Transform->GetWorldPosition().x > m_Destination.x)
+				if (m_pTransform->GetWorldPosition().x > m_Destination.x)
 				{
 					m_Destination.x += 32;
 				}
@@ -171,12 +183,45 @@ namespace Scott
 				MoveNextDown(Direction::Right);
 			}
 		}
+		else
+		{
+			m_State = State::Idle;
+		}
+
+		switch (m_State)
+		{
+		case Scott::Idle:
+			SetClipIndex(2);
+			break;
+		case Scott::MoveUp:
+			SetFlip(SDL_RendererFlip::SDL_FLIP_NONE);
+			m_pTransform->RotateWorld(-90);
+			SetClipIndex(1);
+			break;
+		case Scott::MoveRight:
+			m_pTransform->RotateWorld(0);
+			SetFlip(SDL_RendererFlip::SDL_FLIP_NONE);
+			SetClipIndex(1);
+			break;
+		case Scott::MoveDown:
+			m_pTransform->RotateWorld(90);
+			SetFlip(SDL_RendererFlip::SDL_FLIP_VERTICAL);
+			SetClipIndex(1);
+			break;
+		case Scott::MoveLeft:
+			m_pTransform->RotateWorld(0);
+			SetFlip(SDL_RendererFlip::SDL_FLIP_HORIZONTAL);
+			SetClipIndex(1);
+			break;
+		default:
+			break;
+		}
 
 		// ----------------------------------- Update TileMap ------------------------------------ // 
 		{
 			if (m_State != State::Idle)
 			{
-				glm::vec2 currentPosition = m_Transform->GetWorldPosition();
+				glm::vec2 currentPosition = m_pTransform->GetWorldPosition();
 
 				m_GridPosX = (int)m_Destination.x / 32;
 				m_GridPosY = (int)m_Destination.y / 32;
@@ -188,5 +233,23 @@ namespace Scott
 			}
 		}
 		// --------------------------------------------------------------------------------------- //
+	}
+
+	void Player::SetClipIndex(int index)
+	{
+		if (index != m_ClipIndex)
+		{
+			m_ClipIndex = index;
+			m_pSpriteComponent->SetClipIndex(index);
+		}
+	}
+
+	void Player::SetFlip(const SDL_RendererFlip& flip)
+	{
+		if (m_Flip != flip)
+		{
+			m_Flip = flip;
+			m_pSpriteComponent->SetFlip(flip);
+		}
 	}
 }

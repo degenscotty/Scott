@@ -7,11 +7,22 @@
 
 namespace Scott
 {
-	SpriteComponent::SpriteComponent(const std::string& file)
+	SpriteComponent::SpriteComponent(const std::string& file, int rows, int cols)
 		: m_pTexture{ nullptr }
 		, m_Pivot{}
 		, m_Renderer(Renderer::GetInstance())
 		, m_File{}
+		, m_Rows{ rows }
+		, m_Cols{ cols }
+		, m_AnimTime{ 0.0f }
+		, m_FramesPerSecond{ 6 }
+		, m_ClipWidth{ 32 }
+		, m_ClipHeight{ 32 }
+		, m_AnimFrame{ 0 }
+		, m_GameTime{ GameTime::GetInstance() }
+		, m_ClipIndex{}
+		, m_Clips{}
+		, m_Flip{ SDL_RendererFlip::SDL_FLIP_NONE }
 	{
 		SetTexture(file);
 	}
@@ -32,15 +43,64 @@ namespace Scott
 		m_Pivot = pivot;
 	}
 
+	void SpriteComponent::SetClipIndex(int index)
+	{
+		if (index > m_Clips.size() - 1)
+		{
+			SC_CORE_ERROR("SpriteComponent::SetClipIndex > This clip hasn't been added yet!");
+			return;
+		}
+
+		m_ClipIndex = index;
+		m_AnimFrame = m_ClipIndex * m_Rows;
+	}
+
+	void SpriteComponent::AddClip(int clipSize)
+	{
+		if (clipSize > m_Cols)
+		{
+			SC_CORE_ERROR("SpriteComponent::AddClip > ClipSize is too big for this spritesheet!");
+			return;
+		}
+
+		m_Clips.push_back(clipSize);
+	}
+
+	void SpriteComponent::SetFlip(const SDL_RendererFlip& flip)
+	{
+		m_Flip = flip;
+	}
+
+	void SpriteComponent::Update()
+	{
+		m_AnimTime += m_GameTime.GetElapsedSec();
+
+		if (m_AnimTime >= 1.0f / m_FramesPerSecond)
+		{
+			++m_AnimFrame;
+			m_AnimTime = 0.0f;
+			if (m_AnimFrame == m_ClipIndex * m_Rows + m_Clips[m_ClipIndex])
+			{
+				m_AnimFrame = m_ClipIndex * m_Rows;
+			}
+		}
+	}
+
 	void SpriteComponent::Render()
 	{
 		if (!m_pTexture)
 		{
-			SC_CORE_ERROR("TextureComponent::Render > Failed to render Texture!");
+			SC_CORE_ERROR("TextureComponent::Render > m_pTexture is nullptr!");
 		}
 
+		SDL_Rect src;
+		src.x = (int)((m_AnimFrame % m_Cols) * m_ClipWidth);
+		src.y = (int)((m_AnimFrame / m_Cols) * m_ClipHeight);
+		src.w = (int)m_ClipWidth;
+		src.h = (int)m_ClipHeight;
+
 		TransformComponent* transformComponent = GetGameObject()->GetComponent<TransformComponent>();
-		m_Renderer.RenderSpriteComponent(this, transformComponent);
+		m_Renderer.RenderSpriteComponent(this, transformComponent, src, m_Flip);
 	}
 }
 

@@ -112,7 +112,7 @@ namespace Scott
 		SDL_RenderCopyEx(GetSDLRenderer(), pTexture->GetSDLTexture(), nullptr, &dest, pTransform->GetWorldRotation(), nullptr, SDL_FLIP_NONE);
 	}
 
-	void Renderer::RenderSpriteComponent(SpriteComponent* spriteComponent, TransformComponent* transfComponent)
+	void Renderer::RenderSpriteComponent(SpriteComponent* spriteComponent, TransformComponent* transfComponent, const SDL_Rect& srcRect, const SDL_RendererFlip& flip)
 	{
 		SDL_Rect dest;
 		TransformComponent* pTransform = transfComponent;
@@ -123,8 +123,8 @@ namespace Scott
 
 		SDL_QueryTexture(pTexture->GetSDLTexture(), nullptr, nullptr, &dest.w, &dest.h);
 
-		dest.w = int(dest.w * pTransform->GetWorldScale().x);
-		dest.h = int(dest.h * pTransform->GetWorldScale().y);
+		dest.w = int(srcRect.w);
+		dest.h = int(srcRect.h);
 
 		//dest.x = dest.x - (int)(dest.w / 2.0f);
 		//dest.y = dest.y - (int)(dest.h / 2.0f);
@@ -139,8 +139,7 @@ namespace Scott
 		//	pPivot->x = static_cast<int>(transfComponent->GetPivot()->x);
 		//	pPivot->y = static_cast<int>(transfComponent->GetPivot()->y);
 		//}
-		SDL_RenderCopyEx(GetSDLRenderer(), pTexture->GetSDLTexture(), nullptr, &dest, pTransform->GetWorldRotation(), nullptr, SDL_FLIP_NONE);
-
+		SDL_RenderCopyEx(GetSDLRenderer(), pTexture->GetSDLTexture(), &srcRect, &dest, pTransform->GetWorldRotation(), nullptr, flip);
 	}
 
 	void Renderer::RenderTextComponent(TextComponent* textureComponent, TransformComponent* transfComponent)
