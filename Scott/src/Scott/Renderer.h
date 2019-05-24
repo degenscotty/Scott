@@ -21,6 +21,7 @@ namespace Scott
 		void RenderTexture(const Texture2D& texture, float x, float y) const;
 		void RenderTexture(SDL_Texture* texture, int x, int y, int width, int height);
 		void RenderTextureComponent(TextureComponent* textureComponent, TransformComponent* transfComponent);
+		void RenderSpriteComponent(SpriteComponent* spriteComponent, TransformComponent* transfComponent);
 		void RenderTextComponent(TextComponent* textureComponent, TransformComponent* transfComponent);
 
 		SDL_Renderer* GetSDLRenderer();

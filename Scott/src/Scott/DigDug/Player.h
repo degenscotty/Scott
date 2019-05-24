@@ -35,6 +35,11 @@ namespace Scott
 		Player& operator=(const Player& other) = delete;
 		Player& operator=(Player&& other) = delete;
 
+		void MoveNextUp(const Direction& nextDirection);
+		void MoveNextDown(const Direction& nextDirection);
+		void MoveNextLeft(const Direction& nextDirection);
+		void MoveNextRight(const Direction& nextDirection);
+
 	private:
 		GameTime& m_GameTime;
 		LevelManager& m_LevelManager;

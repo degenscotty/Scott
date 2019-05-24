@@ -20,6 +20,7 @@ namespace Scott
 
 		void TranslateWorld(float x, float y);
 		void TranslateWorld(const glm::vec2& position);
+		void MoveWorld(float x, float y);
 
 		void Rotate(float x, bool isEuler = true);
 		void RotateWorld(float x, bool isEuler = true);

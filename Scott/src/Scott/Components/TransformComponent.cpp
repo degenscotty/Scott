@@ -50,6 +50,12 @@ namespace Scott
 		m_WorldPosition = position;
 	}
 
+	void TransformComponent::MoveWorld(float x, float y)
+	{
+		m_WorldPosition.x += x;
+		m_WorldPosition.y += y;
+	}
+
 	void TransformComponent::Rotate(float x, bool isEuler /*= true*/)
 	{
 		m_Rotation = x;

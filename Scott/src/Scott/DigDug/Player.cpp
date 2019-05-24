@@ -16,6 +16,7 @@ namespace Scott
 		, m_LevelManager{ LevelManager::GetInstance() }
 	{
 		AddComponent(new TextureComponent("player.png"));
+		m_Transform->TranslateWorld(0.0f, 64.0f);
 		m_Destination = m_Transform->GetWorldPosition();
 	}
 
@@ -24,100 +25,152 @@ namespace Scott
 	{
 	}
 
+	void Player::MoveNextUp(const Direction& nextDirection)
+	{
+		if (m_Transform->GetWorldPosition().y - (m_MoveSpeed * m_GameTime.GetElapsedSec()) < m_Destination.y)
+		{
+			m_Transform->TranslateWorld(m_Destination);
+			m_Direction = nextDirection;
+		}
+		else
+		{
+			m_Transform->MoveWorld(0, -(m_MoveSpeed * m_GameTime.GetElapsedSec()));
+		}
+	}
+
+	void Player::MoveNextDown(const Direction& nextDirection)
+	{
+		if (m_Transform->GetWorldPosition().y + (m_MoveSpeed * m_GameTime.GetElapsedSec()) > m_Destination.y)
+		{
+			m_Transform->TranslateWorld(m_Destination);
+			m_Direction = nextDirection;
+		}
+		else
+		{
+			m_Transform->MoveWorld(0, +(m_MoveSpeed * m_GameTime.GetElapsedSec()));
+		}
+	}
+
+	void Player::MoveNextLeft(const Direction& nextDirection)
+	{
+		if (m_Transform->GetWorldPosition().x - (m_MoveSpeed * m_GameTime.GetElapsedSec()) < m_Destination.x)
+		{
+			m_Transform->TranslateWorld(m_Destination);
+			m_Direction = nextDirection;
+		}
+		else
+		{
+			m_Transform->MoveWorld(-(m_MoveSpeed * m_GameTime.GetElapsedSec()), 0);
+		}
+	}
+
+	void Player::MoveNextRight(const Direction& nextDirection)
+	{
+		if (m_Transform->GetWorldPosition().x + (m_MoveSpeed * m_GameTime.GetElapsedSec()) > m_Destination.x)
+		{
+			m_Transform->TranslateWorld(m_Destination);
+			m_Direction = nextDirection;
+		}
+		else
+		{
+			m_Transform->MoveWorld(+(m_MoveSpeed * m_GameTime.GetElapsedSec()), 0);
+		}
+	}
+
 	void Player::Update()
 	{
-		switch (m_State)
+		if (Input::IsKeyPressed(KEY_UP))
 		{
-		case State::Idle:
-		{
-			if (Input::IsKeyPressed(KEY_UP))
+			if (m_Destination == m_Transform->GetWorldPosition() || m_Direction == Direction::Up || m_Direction == Direction::Down)
 			{
-				m_Destination = m_Transform->GetWorldPosition();
-				m_Destination.y -= 32.0f;
-				m_State = State::MoveUp;
-				m_Direction = Direction::Up;
-			}
-			if (Input::IsKeyPressed(KEY_DOWN))
-			{
-				m_Destination = m_Transform->GetWorldPosition();
-				m_Destination.y += 32.0f;
-				m_State = State::MoveDown;
-				m_Direction = Direction::Down;
-			}
-			if (Input::IsKeyPressed(KEY_LEFT))
-			{
-				m_Destination = m_Transform->GetWorldPosition();
-				m_Destination.x -= 32.0f;
-				m_State = State::MoveLeft;
-				m_Direction = Direction::Left;
-			}
-			if (Input::IsKeyPressed(KEY_RIGHT))
-			{
-				m_Destination = m_Transform->GetWorldPosition();
-				m_Destination.x += 32.0f;
-				m_State = State::MoveRight;
-				m_Direction = Direction::Right;
-			}
-		}
-		break;
-		case State::MoveUp:
-		{
-			if (m_Transform->GetWorldPosition().y - (m_MoveSpeed * m_GameTime.GetElapsedSec()) < m_Destination.y)
-			{
-				m_Transform->TranslateWorld(m_Destination);
-				m_State = State::Idle;
-			}
-			else
-			{
-				glm::vec2 currentWorldPos = m_Transform->GetWorldPosition();
-				m_Transform->TranslateWorld(currentWorldPos.x, currentWorldPos.y - (m_MoveSpeed * m_GameTime.GetElapsedSec()));
-			}
-		}
-		break;
-		case State::MoveDown:
-		{
-			if (m_Transform->GetWorldPosition().y + (m_MoveSpeed * m_GameTime.GetElapsedSec()) > m_Destination.y)
-			{
-				m_Transform->TranslateWorld(m_Destination);
-				m_State = State::Idle;
-			}
-			else
-			{
-				glm::vec2 currentWorldPos = m_Transform->GetWorldPosition();
-				m_Transform->TranslateWorld(currentWorldPos.x, currentWorldPos.y + (m_MoveSpeed * m_GameTime.GetElapsedSec()));
-			}
-		}
-		break;
-		case State::MoveRight:
-		{
-			if (m_Transform->GetWorldPosition().x + (m_MoveSpeed * m_GameTime.GetElapsedSec()) > m_Destination.x)
-			{
-				m_Transform->TranslateWorld(m_Destination);
-				m_State = State::Idle;
-			}
-			else
-			{
-				glm::vec2 currentWorldPos = m_Transform->GetWorldPosition();
-				m_Transform->TranslateWorld(currentWorldPos.x + (m_MoveSpeed * m_GameTime.GetElapsedSec()), currentWorldPos.y);
-			}
-		}
-		break;
-		case State::MoveLeft:
-		{
-			if (m_Transform->GetWorldPosition().x - (m_MoveSpeed * m_GameTime.GetElapsedSec()) < m_Destination.x)
-			{
-				m_Transform->TranslateWorld(m_Destination);
-				m_State = State::Idle;
-			}
-			else
-			{
-				glm::vec2 currentWorldPos = m_Transform->GetWorldPosition();
-				m_Transform->TranslateWorld(currentWorldPos.x - (m_MoveSpeed * m_GameTime.GetElapsedSec()), currentWorldPos.y);
-			}
-		}
-		break;
-		}
+				m_Transform->MoveWorld(0, -(m_MoveSpeed * m_GameTime.GetElapsedSec()));
 
+				m_Direction = Direction::Up;
+				m_State = State::MoveUp;
+
+				if (m_Transform->GetWorldPosition().y < m_Destination.y)
+				{
+					m_Destination.y -= 32;
+				}
+			}
+			else if (m_Direction == Direction::Left)
+			{
+				MoveNextLeft(Direction::Up);
+			}
+			else if (m_Direction == Direction::Right)
+			{
+				MoveNextRight(Direction::Up);
+			}
+		}
+		else if (Input::IsKeyPressed(KEY_DOWN))
+		{
+			if (m_Destination == m_Transform->GetWorldPosition() || m_Direction == Direction::Up || m_Direction == Direction::Down)
+			{
+				m_Transform->MoveWorld(0, +(m_MoveSpeed * m_GameTime.GetElapsedSec()));
+
+				m_Direction = Direction::Down;
+				m_State = State::MoveDown;
+
+				if (m_Transform->GetWorldPosition().y > m_Destination.y)
+				{
+					m_Destination.y += 32;
+				}
+			}
+			else if (m_Direction == Direction::Left)
+			{
+				MoveNextLeft(Direction::Down);
+			}
+			else if (m_Direction == Direction::Right)
+			{
+				MoveNextRight(Direction::Down);
+			}
+		}
+		else if (Input::IsKeyPressed(KEY_LEFT))
+		{
+			if (m_Destination == m_Transform->GetWorldPosition() || m_Direction == Direction::Left || m_Direction == Direction::Right)
+			{
+				m_Transform->MoveWorld(-(m_MoveSpeed * m_GameTime.GetElapsedSec()), 0);
+
+				m_Direction = Direction::Left;
+				m_State = State::MoveLeft;
+
+				if (m_Transform->GetWorldPosition().x < m_Destination.x)
+				{
+					m_Destination.x -= 32;
+				}
+			}
+			else if (m_Direction == Direction::Up)
+			{
+				MoveNextUp(Direction::Left);
+			}
+			else if (m_Direction == Direction::Down)
+			{
+				MoveNextDown(Direction::Left);
+			}
+		}
+		else if (Input::IsKeyPressed(KEY_RIGHT))
+		{
+			if (m_Destination == m_Transform->GetWorldPosition() || m_Direction == Direction::Left || m_Direction == Direction::Right)
+			{
+				m_Transform->MoveWorld(+(m_MoveSpeed * m_GameTime.GetElapsedSec()), 0);
+
+				m_Direction = Direction::Right;
+				m_State = State::MoveRight;
+
+				if (m_Transform->GetWorldPosition().x > m_Destination.x)
+				{
+					m_Destination.x += 32;
+				}
+			}
+			else if (m_Direction == Direction::Up)
+			{
+				MoveNextUp(Direction::Right);
+			}
+			else if (m_Direction == Direction::Down)
+			{
+				MoveNextDown(Direction::Right);
+			}
+		}
 
 		// ----------------------------------- Update TileMap ------------------------------------ // 
 		{
@@ -128,7 +181,10 @@ namespace Scott
 				m_GridPosX = (int)m_Destination.x / 32;
 				m_GridPosY = (int)m_Destination.y / 32;
 
-				m_LevelManager.SetTile(m_GridPosX, m_GridPosY, '#');
+				if (m_GridPosY > 2)
+				{
+					m_LevelManager.SetTile(m_GridPosX, m_GridPosY, '#');
+				}
 			}
 		}
 		// --------------------------------------------------------------------------------------- //

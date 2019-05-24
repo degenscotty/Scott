@@ -140,6 +140,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Scott\Components\SpriteComponent.h" />
     <ClInclude Include="src\Scott\DigDug\Player.h" />
     <ClInclude Include="src\Scott\Manager\LevelManager.h" />
     <ClInclude Include="src\Platform\SDL\ImGuiOpenGLRenderer.h" />
@@ -179,6 +180,7 @@
     <ClInclude Include="src\scpch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Scott\Components\SpriteComponent.cpp" />
     <ClCompile Include="src\Scott\DigDug\Player.cpp" />
     <ClCompile Include="src\Scott\Manager\LevelManager.cpp" />
     <ClCompile Include="src\Platform\SDL\ImGuiOpenGLRenderer.cpp" />

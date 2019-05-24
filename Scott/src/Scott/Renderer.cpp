@@ -112,6 +112,37 @@ namespace Scott
 		SDL_RenderCopyEx(GetSDLRenderer(), pTexture->GetSDLTexture(), nullptr, &dest, pTransform->GetWorldRotation(), nullptr, SDL_FLIP_NONE);
 	}
 
+	void Renderer::RenderSpriteComponent(SpriteComponent* spriteComponent, TransformComponent* transfComponent)
+	{
+		SDL_Rect dest;
+		TransformComponent* pTransform = transfComponent;
+		Texture2D* pTexture = spriteComponent->GetTexture();
+
+		dest.x = static_cast<int>(pTransform->GetWorldPosition().x);
+		dest.y = static_cast<int>(pTransform->GetWorldPosition().y);
+
+		SDL_QueryTexture(pTexture->GetSDLTexture(), nullptr, nullptr, &dest.w, &dest.h);
+
+		dest.w = int(dest.w * pTransform->GetWorldScale().x);
+		dest.h = int(dest.h * pTransform->GetWorldScale().y);
+
+		//dest.x = dest.x - (int)(dest.w / 2.0f);
+		//dest.y = dest.y - (int)(dest.h / 2.0f);
+
+		//SDL_Point* pPivot = new SDL_Point();
+		//pPivot->x = static_cast<int>(texComponent->GetPivot().x);
+		//pPivot->y = static_cast<int>(texComponent->GetPivot().y);
+
+		//if (texComponent->GetPivot())
+		//{
+		//	pPivot = new SDL_Point();
+		//	pPivot->x = static_cast<int>(transfComponent->GetPivot()->x);
+		//	pPivot->y = static_cast<int>(transfComponent->GetPivot()->y);
+		//}
+		SDL_RenderCopyEx(GetSDLRenderer(), pTexture->GetSDLTexture(), nullptr, &dest, pTransform->GetWorldRotation(), nullptr, SDL_FLIP_NONE);
+
+	}
+
 	void Renderer::RenderTextComponent(TextComponent* textureComponent, TransformComponent* transfComponent)
 	{
 		SDL_Rect dest;
