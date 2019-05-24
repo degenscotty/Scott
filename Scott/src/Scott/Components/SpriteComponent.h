@@ -1,3 +1,4 @@
+#pragma once
 #include "Scott/Components/BaseComponent.h"
 
 #include "Scott/Helpers/Texture2D.h"
