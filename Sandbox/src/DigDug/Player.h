@@ -1,7 +1,7 @@
 #pragma once
 #include "Scott/SceneGraph/GameObject.h"
 #include "Scott/GameTime.h"
-#include "Scott/Manager/LevelManager.h"
+#include "../Manager/LevelManager.h"
 
 namespace Scott
 {
@@ -42,6 +42,8 @@ namespace Scott
 
 		void SetClipIndex(int index);
 		void SetFlip(const SDL_RendererFlip& flip);
+
+		const glm::vec2 GetGridPos();
 	private:
 		GameTime& m_GameTime;
 		LevelManager& m_LevelManager;
@@ -57,8 +59,8 @@ namespace Scott
 		int m_GridPosX;
 		int m_GridPosY;
 
-		int m_ClipIndex;
 		SDL_RendererFlip m_Flip;
+		int m_ClipIndex;
 	};
 }
 

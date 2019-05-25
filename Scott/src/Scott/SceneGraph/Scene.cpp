@@ -7,6 +7,7 @@ namespace Scott
 
 	Scene::Scene(const std::string& name)
 		: m_Name{ name }
+		, m_GameObjects{}
 	{
 
 	}
@@ -26,6 +27,10 @@ namespace Scott
 
 	void Scene::RootUpdate()
 	{
+		m_GameObjects.erase(std::remove_if(m_GameObjects.begin(), m_GameObjects.end(), [](GameObject* gameObject) {
+			return gameObject->CheckDestroy();
+		}), m_GameObjects.end());
+
 		for (GameObject* gameObject : m_GameObjects)
 		{
 			gameObject->RootUpdate();

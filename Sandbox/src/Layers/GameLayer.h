@@ -2,9 +2,10 @@
 #include "Scott/Layer.h"
 #include "Scott/SceneGraph/SceneManager.h"
 #include "Scott/SceneGraph/GameObject.h"
-#include "Scott/Manager/LevelManager.h"
-#include "Scott/DigDug/Player.h"
 #include "Scott/Renderer.h"
+
+#include "../Manager/LevelManager.h"
+#include "../DigDug/Player.h"
 
 class GameLayer : public Scott::Layer
 {
@@ -16,6 +17,7 @@ public:
 	void OnDetach() override;
 	void OnUpdate() override;
 	void Render() override;
+	void OnImGuiRender() override;
 
 private:
 	Scott::SceneManager& m_SceneManager;

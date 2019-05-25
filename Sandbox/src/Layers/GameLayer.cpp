@@ -4,6 +4,7 @@
 #include "Scott/SceneGraph/Scene.h"
 #include "Scott/Input.h"
 #include "Scott/InputDefinitions.h"
+#include "imgui.h"
 
 GameLayer::GameLayer()
 	: m_SceneManager{ Scott::SceneManager::GetInstance() }
@@ -11,6 +12,7 @@ GameLayer::GameLayer()
 	, m_pTestObject{ nullptr }
 	, m_pTextObject{ nullptr }
 	, m_pLevelManager{ nullptr }
+	, m_pPlayer{ nullptr }
 {
 }
 
@@ -53,6 +55,8 @@ void GameLayer::OnAttach()
 		m_pLevelManager = new Scott::LevelManager();
 
 		scene->Add(m_pLevelManager);
+
+		m_pLevelManager->InitializeLevel(scene);
 	}
 	// -------------------------------------------------------------------- //
 
@@ -77,4 +81,14 @@ void GameLayer::OnUpdate()
 
 void GameLayer::Render()
 {
+}
+
+void GameLayer::OnImGuiRender()
+{
+	glm::vec2 gridPos = m_pPlayer->GetGridPos();
+
+	ImGui::Begin("DEBUG");
+
+	ImGui::Text("[NextX: %.0f, NextY: %.0f]", gridPos.x, gridPos.y);
+	ImGui::End();
 }

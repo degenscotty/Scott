@@ -15,11 +15,17 @@ namespace Scott
 		LevelManager& operator=(const LevelManager& other) = delete;
 		LevelManager& operator=(LevelManager&& other) = delete;
 
+		void InitializeLevel(Scene* scene);
 		void Update() override;
 		void Render() override;
 
 		wchar_t GetTile(int x, int y);
 		void SetTile(int x, int y, wchar_t c);
+
+		int GetWidth();
+		int GetHeight();
+
+		const std::wstring& GetLevel();
 
 		static inline LevelManager& GetInstance() { return *s_Instance; };
 	private:

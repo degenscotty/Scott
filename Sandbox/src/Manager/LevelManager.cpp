@@ -1,5 +1,7 @@
 #include "scpch.h"
 #include "LevelManager.h"
+#include "Scott/SceneGraph/Scene.h"
+#include "../DigDug/Rock.h"
 
 namespace Scott
 {
@@ -28,7 +30,7 @@ namespace Scott
 		m_LevelString += L"..............";
 		m_LevelString += L"..............";
 		m_LevelString += L"..............";
-		m_LevelString += L"..............";
+		m_LevelString += L"...OOO........";
 		m_LevelString += L"..............";
 		m_LevelString += L"..............";
 		m_LevelString += L"..............";
@@ -60,6 +62,29 @@ namespace Scott
 		pTexture = nullptr;
 	}
 
+	void LevelManager::InitializeLevel(Scene* scene)
+	{
+		for (int x = 0; x < m_LevelWidth; ++x)
+		{
+			for (int y = 0; y < m_LevelHeight; ++y)
+			{
+				wchar_t tileID = GetTile(x, y);
+				switch (tileID)
+				{
+				case L'O':
+				{
+					Rock* rock = new Rock(glm::vec2(x * 32.0f, y * 32.0f));
+					scene->Add(rock);
+					SetTile(x, y, '.');
+				}
+				break;
+				default:
+					break;
+				}
+			}
+		}
+	}
+
 	LevelManager::~LevelManager()
 	{
 	}
@@ -82,6 +107,21 @@ namespace Scott
 		{
 			m_LevelString[y * m_LevelWidth + x] = c;
 		}
+	}
+
+	const std::wstring& LevelManager::GetLevel()
+	{
+		return m_LevelString;
+	}
+
+	int LevelManager::GetWidth()
+	{
+		return m_LevelWidth;
+	}
+
+	int LevelManager::GetHeight()
+	{
+		return m_LevelHeight;
 	}
 
 	void LevelManager::Update()

@@ -12,6 +12,7 @@ namespace Scott
 		, m_Children{}
 		, m_pParentObject(nullptr)
 		, m_pTransform(nullptr)
+		, m_Destroy{ false }
 	{
 		m_pTransform = new TransformComponent();
 		m_Components.push_back(m_pTransform);

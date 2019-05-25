@@ -30,11 +30,13 @@ namespace Scott
 		void SetPivot(const glm::vec2& pivot);
 		void SetTexture(const std::string& file);
 		void SetClipIndex(int index);
-		void AddClip(int clipSize);
+		void AddClip(int clipSize, bool repeat);
 		void SetFlip(const SDL_RendererFlip& flip);
 
 		Texture2D* GetTexture() { return m_pTexture; };
 		const glm::vec2& GetPivot() { return m_Pivot; };
+
+		bool CheckEndOfCurrentClip();
 
 	private:
 		std::string m_File;
@@ -51,10 +53,12 @@ namespace Scott
 		float m_ClipWidth;
 		float m_ClipHeight;
 		int m_AnimFrame;
+		bool m_EndOfClip;
 
 		int m_ClipIndex;
 
-		std::vector<unsigned int> m_Clips;
+		std::vector<std::pair<unsigned int, bool>> m_Clips;
+		std::vector<bool> m_EndedClips;
 		SDL_RendererFlip m_Flip;
 	};
 }

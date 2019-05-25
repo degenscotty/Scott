@@ -23,6 +23,7 @@ namespace Scott
 		, m_ClipIndex{}
 		, m_Clips{}
 		, m_Flip{ SDL_RendererFlip::SDL_FLIP_NONE }
+		, m_EndOfClip{ false }
 	{
 		SetTexture(file);
 	}
@@ -52,10 +53,11 @@ namespace Scott
 		}
 
 		m_ClipIndex = index;
-		m_AnimFrame = m_ClipIndex * m_Rows;
+		m_AnimFrame = m_ClipIndex * m_Cols;
+		m_AnimTime = 0.0f;
 	}
 
-	void SpriteComponent::AddClip(int clipSize)
+	void SpriteComponent::AddClip(int clipSize, bool repeat)
 	{
 		if (clipSize > m_Cols)
 		{
@@ -63,7 +65,8 @@ namespace Scott
 			return;
 		}
 
-		m_Clips.push_back(clipSize);
+		m_Clips.push_back(std::make_pair(clipSize, repeat));
+		m_EndedClips.push_back(false);
 	}
 
 	void SpriteComponent::SetFlip(const SDL_RendererFlip& flip)
@@ -73,17 +76,35 @@ namespace Scott
 
 	void SpriteComponent::Update()
 	{
-		m_AnimTime += m_GameTime.GetElapsedSec();
-
-		if (m_AnimTime >= 1.0f / m_FramesPerSecond)
+		if (!m_EndedClips[m_ClipIndex])
 		{
-			++m_AnimFrame;
-			m_AnimTime = 0.0f;
-			if (m_AnimFrame == m_ClipIndex * m_Rows + m_Clips[m_ClipIndex])
+			m_AnimTime += m_GameTime.GetElapsedSec();
+
+			if (m_AnimTime >= 1.0f / m_FramesPerSecond)
 			{
-				m_AnimFrame = m_ClipIndex * m_Rows;
+				++m_AnimFrame;
+
+				m_AnimTime = 0.0f;
+
+				if (m_AnimFrame == m_ClipIndex * m_Cols + m_Clips[m_ClipIndex].first)
+				{
+					if (m_Clips[m_ClipIndex].second == true)
+					{
+						m_AnimFrame = m_ClipIndex * m_Cols;
+					}
+					else
+					{
+						m_AnimFrame = m_ClipIndex * m_Cols + m_Clips[m_ClipIndex].first - 1;
+						m_EndedClips[m_ClipIndex] = true;
+					}
+				}
 			}
 		}
+	}
+
+	bool SpriteComponent::CheckEndOfCurrentClip()
+	{
+		return m_EndedClips[m_ClipIndex];
 	}
 
 	void SpriteComponent::Render()

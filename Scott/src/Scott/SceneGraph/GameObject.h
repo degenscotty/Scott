@@ -29,6 +29,9 @@ namespace Scott
 
 		GameObject* GetParent() const { return m_pParentObject; }
 
+		void Destroy() { m_Destroy = true; }
+		bool CheckDestroy() { return m_Destroy; }
+
 #pragma region 
 		///This code is completely based on Overlord engine(GP2)
 		template <class T>
@@ -113,7 +116,7 @@ namespace Scott
 #pragma endregion Template Methods
 
 	protected:
-		virtual void Initialize() {}
+		//virtual void Initialize() {}
 		virtual void Update() {}
 		virtual void Render() {}
 
@@ -124,6 +127,7 @@ namespace Scott
 		void RootRender();
 
 		std::string m_Name;
+		bool m_Destroy;
 
 		std::vector<GameObject*> m_Children;
 		std::vector<BaseComponent*> m_Components;

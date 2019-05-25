@@ -15,15 +15,17 @@ namespace Scott
 		, m_pSpriteComponent{ nullptr }
 		, m_GameTime{ GameTime::GetInstance() }
 		, m_LevelManager{ LevelManager::GetInstance() }
-		, m_ClipIndex{}
 		, m_Flip{ SDL_RendererFlip::SDL_FLIP_NONE }
+		, m_GridPosX{}
+		, m_GridPosY{}
+		, m_ClipIndex{}
 	{
 		AddComponent(new SpriteComponent("SpriteSheet.png", 2, 2));
 		m_pSpriteComponent = GetComponent<SpriteComponent>();
-		m_pSpriteComponent->AddClip(2);
-		m_pSpriteComponent->AddClip(2);
-		m_pSpriteComponent->AddClip(1);
-		m_pSpriteComponent->SetClipIndex(2);
+		m_pSpriteComponent->AddClip(2, true);
+		m_pSpriteComponent->AddClip(2, true);
+		m_pSpriteComponent->AddClip(1, false);
+		SetClipIndex(2);
 
 		m_pTransform->TranslateWorld(0.0f, 64.0f);
 		m_Destination = m_pTransform->GetWorldPosition();
@@ -31,6 +33,8 @@ namespace Scott
 
 	Player::~Player()
 	{
+		m_pSpriteComponent = nullptr;
+		m_pTransform = nullptr;
 	}
 
 	void Player::MoveNextUp(const Direction& nextDirection)
@@ -235,21 +239,26 @@ namespace Scott
 		// --------------------------------------------------------------------------------------- //
 	}
 
-	void Player::SetClipIndex(int index)
-	{
-		if (index != m_ClipIndex)
-		{
-			m_ClipIndex = index;
-			m_pSpriteComponent->SetClipIndex(index);
-		}
-	}
-
 	void Player::SetFlip(const SDL_RendererFlip& flip)
 	{
 		if (m_Flip != flip)
 		{
 			m_Flip = flip;
 			m_pSpriteComponent->SetFlip(flip);
+		}
+	}
+
+	const glm::vec2 Player::GetGridPos()
+	{
+		return glm::vec2(m_GridPosX, m_GridPosY);
+	}
+
+	void Player::SetClipIndex(int index)
+	{
+		if (m_ClipIndex != index)
+		{
+			m_ClipIndex = index;
+			m_pSpriteComponent->SetClipIndex(index);
 		}
 	}
 }

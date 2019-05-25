@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="DigDug">
+      <UniqueIdentifier>{398823AE-252A-4E84-0EE5-61D8FA25D5D4}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Layers">
       <UniqueIdentifier>{157446C0-0116-7196-EAD0-84EAD611F8E6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{40C44515-ACA3-C4B0-B5BB-4F87211A2B12}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\DigDug\Player.h">
+      <Filter>DigDug</Filter>
+    </ClInclude>
     <ClInclude Include="src\Layers\GameLayer.h">
       <Filter>Layers</Filter>
     </ClInclude>
+    <ClInclude Include="src\Manager\LevelManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DigDug\Rock.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\DigDug\Player.cpp">
+      <Filter>DigDug</Filter>
+    </ClCompile>
     <ClCompile Include="src\Layers\GameLayer.cpp">
       <Filter>Layers</Filter>
     </ClCompile>
+    <ClCompile Include="src\Manager\LevelManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
     <ClCompile Include="src\SandboxApp.cpp" />
+    <ClCompile Include="src\DigDug\Rock.cpp" />
   </ItemGroup>
 </Project>
