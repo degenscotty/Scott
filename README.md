@@ -11,6 +11,7 @@ I started the engine from scratch following TheCherno on youtube! Big thanks to 
  - [SDL2_ttf](https://www.libsdl.org/projects/SDL_ttf/)
  - [glm](https://github.com/g-truc/glm)
  - [spdlog](https://github.com/gabime/spdlog)
+ - [imgui](https://github.com/ocornut/imgui)
 
 ## Reference
 [Dig Dug for NES](https://www.retrogames.cz/play_012-NES.php) : Online version of the game
