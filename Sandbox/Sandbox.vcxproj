@@ -134,14 +134,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\DigDug\Rock.h" />
     <ClInclude Include="src\DigDug\Player.h" />
+    <ClInclude Include="src\DigDug\Rock.h" />
     <ClInclude Include="src\Layers\GameLayer.h" />
     <ClInclude Include="src\Manager\LevelManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\DigDug\Rock.cpp" />
     <ClCompile Include="src\DigDug\Player.cpp" />
+    <ClCompile Include="src\DigDug\Rock.cpp" />
     <ClCompile Include="src\Layers\GameLayer.cpp" />
     <ClCompile Include="src\Manager\LevelManager.cpp" />
     <ClCompile Include="src\SandboxApp.cpp" />
