@@ -13,6 +13,7 @@ I started the engine from scratch following TheCherno on youtube! Big thanks to 
  - [spdlog](https://github.com/gabime/spdlog)
 
 ## Reference
-https://github.com/TheCherno
 [Dig Dug for NES](https://www.retrogames.cz/play_012-NES.php) : Online version of the game
+
+## ScreenShot
 ![](Screenshots/digdug.png)
