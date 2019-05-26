@@ -3,6 +3,7 @@
 
 #include "Scott/Components/BaseComponent.h"
 #include "Scott/Components/TransformComponent.h"
+#include "Scott/Components/CollisionComponent.h"
 
 namespace Scott
 {
@@ -13,6 +14,7 @@ namespace Scott
 		, m_pParentObject(nullptr)
 		, m_pTransform(nullptr)
 		, m_Destroy{ false }
+		, m_pCollisionComponent{ nullptr }
 	{
 		m_pTransform = new TransformComponent();
 		m_Components.push_back(m_pTransform);
@@ -99,6 +101,12 @@ namespace Scott
 			return;
 		}
 
+		if (typeid(*component) == typeid(CollisionComponent) && HasComponent<CollisionComponent>())
+		{
+			SC_CORE_ERROR("GameObject::AddComponent > GameObject can contain only one CollisionComponent!");
+			return;
+		}
+
 		auto it = find(m_Components.begin(), m_Components.end(), component);
 
 		if (it != m_Components.end())
@@ -107,6 +115,13 @@ namespace Scott
 			return;
 		}
 
+		if (typeid(*component) == typeid(CollisionComponent))
+		{
+			m_pCollisionComponent = static_cast<CollisionComponent*>(component);
+			m_Components.push_back(m_pCollisionComponent);
+			component->m_pGameObject = this;
+			return;
+		}
 
 		m_Components.push_back(component);
 		component->m_pGameObject = this;

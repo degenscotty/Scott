@@ -7,7 +7,7 @@
 
 namespace Scott
 {
-	class SCOTT_API Log
+	class Log
 	{
 	public:
 		static void Init();

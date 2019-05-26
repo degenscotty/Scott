@@ -39,6 +39,8 @@ namespace Scott
 		bool CheckEndOfCurrentClip();
 
 	private:
+		TransformComponent* m_pTransformComponent;
+
 		std::string m_File;
 		Texture2D* m_pTexture;
 		glm::vec2 m_Pivot;

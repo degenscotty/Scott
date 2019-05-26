@@ -73,18 +73,6 @@
     <ClInclude Include="src\Scott\EntryPoint.h">
       <Filter>Scott</Filter>
     </ClInclude>
-    <ClInclude Include="src\Scott\Events\ApplicationEvent.h">
-      <Filter>Scott\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Scott\Events\Event.h">
-      <Filter>Scott\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Scott\Events\KeyEvent.h">
-      <Filter>Scott\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Scott\Events\MouseEvent.h">
-      <Filter>Scott\Events</Filter>
-    </ClInclude>
     <ClInclude Include="src\Scott\GameTime.h">
       <Filter>Scott</Filter>
     </ClInclude>
@@ -134,6 +122,7 @@
       <Filter>Scott</Filter>
     </ClInclude>
     <ClInclude Include="src\scpch.h" />
+    <ClInclude Include="src\Scott\Components\CollisionComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\SDL\ImGuiOpenGLRenderer.cpp">
@@ -200,5 +189,6 @@
       <Filter>Scott\SceneGraph</Filter>
     </ClCompile>
     <ClCompile Include="src\scpch.cpp" />
+    <ClCompile Include="src\Scott\Components\CollisionComponent.cpp" />
   </ItemGroup>
 </Project>

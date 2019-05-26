@@ -27,6 +27,9 @@ namespace Scott
 		m_pSpriteComponent->AddClip(1, false);
 		SetClipIndex(2);
 
+		AddComponent(new CollisionComponent());
+		SetCollisionCallBack(BIND_COLLISION_FN(Player::OnCollision));
+
 		m_pTransform->TranslateWorld(0.0f, 64.0f);
 		m_Destination = m_pTransform->GetWorldPosition();
 	}
@@ -260,5 +263,9 @@ namespace Scott
 			m_ClipIndex = index;
 			m_pSpriteComponent->SetClipIndex(index);
 		}
+	}
+
+	void Player::OnCollision(GameObject& gameObject)
+	{
 	}
 }

@@ -9,6 +9,7 @@ namespace Scott
 {
 	SpriteComponent::SpriteComponent(const std::string& file, int rows, int cols)
 		: m_pTexture{ nullptr }
+		, m_pTransformComponent{ nullptr }
 		, m_Pivot{}
 		, m_Renderer(Renderer::GetInstance())
 		, m_File{}
@@ -120,8 +121,16 @@ namespace Scott
 		src.w = (int)m_ClipWidth;
 		src.h = (int)m_ClipHeight;
 
-		TransformComponent* transformComponent = GetGameObject()->GetComponent<TransformComponent>();
-		m_Renderer.RenderSpriteComponent(this, transformComponent, src, m_Flip);
+		if (m_pGameObject != nullptr)
+		{
+			m_pTransformComponent = GetTransform();
+		}
+		else
+		{
+			SC_CORE_ERROR("SpriteComponent::Render() > Cannot Render SpriteComponent, it is not attached to a GameObject");
+		}
+
+		m_Renderer.RenderSpriteComponent(this, m_pTransformComponent, src, m_Flip);
 	}
 }
 

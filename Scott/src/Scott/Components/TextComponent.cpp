@@ -89,7 +89,7 @@ namespace Scott
 	{
 		if (m_pTexture)
 		{
-			TransformComponent* transformComponent = GetGameObject()->GetComponent<TransformComponent>();
+			TransformComponent* transformComponent = GetTransform();
 			Renderer::GetInstance().RenderTextComponent(this, transformComponent);		
 		}
 	}

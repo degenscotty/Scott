@@ -14,11 +14,6 @@ public:
 	{
 		//SC_INFO("ExampleLayer::Update");
 	}
-
-	void OnEvent(Scott::Event& event) override
-	{
-
-	}
 };
 
 

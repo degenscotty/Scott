@@ -43,6 +43,8 @@ namespace Scott
 		void SetClipIndex(int index);
 		void SetFlip(const SDL_RendererFlip& flip);
 
+		void OnCollision(GameObject& gameObject);
+
 		const glm::vec2 GetGridPos();
 	private:
 		GameTime& m_GameTime;

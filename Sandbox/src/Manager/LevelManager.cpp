@@ -30,7 +30,7 @@ namespace Scott
 		m_LevelString += L"..............";
 		m_LevelString += L"..............";
 		m_LevelString += L"..............";
-		m_LevelString += L"...OOO........";
+		m_LevelString += L"...O..........";
 		m_LevelString += L"..............";
 		m_LevelString += L"..............";
 		m_LevelString += L"..............";

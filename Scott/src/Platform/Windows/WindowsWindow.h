@@ -5,7 +5,7 @@
 
 namespace Scott {
 
-	class SCOTT_API WindowsWindow final : public Window
+	class WindowsWindow final : public Window
 	{
 	public:
 		WindowsWindow(const WindowProps& props);
@@ -17,7 +17,6 @@ namespace Scott {
 		inline unsigned int GetHeight() const override { return m_Data.Height; }
 
 		// Window attributes
-		inline void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
 		void SetVSync(bool enabled) override;
 		bool IsVSync() const override;
 
@@ -37,8 +36,6 @@ namespace Scott {
 			std::string Title;
 			unsigned int Width, Height;
 			bool VSync;
-
-			EventCallbackFn EventCallback;
 		};
 
 		WindowData m_Data;

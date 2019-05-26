@@ -7,7 +7,7 @@
 
 namespace Scott {
 
-	class SCOTT_API LayerStack
+	class LayerStack
 	{
 	public:
 		LayerStack();

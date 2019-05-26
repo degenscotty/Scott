@@ -2,13 +2,12 @@
 #include "Core.h"
 
 #include "Window.h"
-#include "Scott/Events/ApplicationEvent.h"
 #include "Scott/LayerStack.h"
 #include "Scott/ImGui/ImGuiLayer.h"
 
 namespace Scott
 {
-	class SCOTT_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -16,16 +15,12 @@ namespace Scott
 
 		void Run();
 
-		void OnEvent(Event& e);
-
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* layer);
 
 		inline static Application& get() { return *s_Instance; }
 		inline Window& GetWindow() { return *m_pWindow; }
 	private:
-		bool OnWindowClosed(WindowCloseEvent& e);
-
 		std::unique_ptr<Window> m_pWindow;
 		ImGuiLayer* m_ImGuiLayer;
 

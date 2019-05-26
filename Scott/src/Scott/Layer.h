@@ -1,11 +1,10 @@
 #pragma once
 
 #include "Scott/Core.h"
-#include "Scott/Events/Event.h"
 
 namespace Scott {
 
-	class SCOTT_API Layer
+	class Layer
 	{
 	public:
 		Layer(const std::string& name = "Layer");
@@ -16,7 +15,6 @@ namespace Scott {
 		virtual void OnUpdate() {}
 		virtual void Render() {}
 		virtual void OnImGuiRender() {}
-		virtual void OnEvent(Event& event) {}
 
 		inline const std::string& GetName() const { return m_DebugName; }
 	protected:

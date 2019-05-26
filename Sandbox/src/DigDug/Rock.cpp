@@ -19,6 +19,9 @@ namespace Scott
 		m_pSpriteComponent->AddClip(1, false);
 		SetClipIndex(1);
 
+		AddComponent(new CollisionComponent());
+		SetCollisionCallBack(BIND_COLLISION_FN(Rock::OnCollision));
+			
 		m_pTransform->TranslateWorld(position);
 		m_Destination = m_pTransform->GetWorldPosition();
 	}
@@ -86,6 +89,14 @@ namespace Scott
 		{
 			m_ClipIndex = index;
 			m_pSpriteComponent->SetClipIndex(index);
+		}
+	}
+
+	void Rock::OnCollision(GameObject& gameObject)
+	{
+		if (gameObject.GetName() == "Player")
+		{
+			gameObject.Destroy();
 		}
 	}
 }

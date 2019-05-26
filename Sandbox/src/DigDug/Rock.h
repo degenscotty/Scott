@@ -27,6 +27,8 @@ namespace Scott
 		void Update() override;
 
 		void SetClipIndex(int index);
+
+		void OnCollision(GameObject& gameObject);
 	private:
 		GameTime& m_GameTime;
 		LevelManager& m_LevelManager;

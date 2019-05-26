@@ -49,7 +49,7 @@ namespace Scott
 
 	void Renderer::ClearBuffer()
 	{
-		SDL_SetRenderDrawColor(m_pRenderer, 25, 25, 25, 255);
+		SDL_SetRenderDrawColor(m_pRenderer, 255, 25, 25, 255);
 		SDL_RenderClear(m_pRenderer);
 	}
 

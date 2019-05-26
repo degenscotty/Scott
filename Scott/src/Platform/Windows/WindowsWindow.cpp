@@ -1,10 +1,6 @@
 #include "scpch.h"
 #include "WindowsWindow.h"
 
-#include "Scott/Events/ApplicationEvent.h"
-#include "Scott/Events/MouseEvent.h"
-#include "Scott/Events/KeyEvent.h"
-
 #include "Scott/Log.h"
 #include "Scott/Input.h"
 #include "Scott/SceneGraph/SceneManager.h"

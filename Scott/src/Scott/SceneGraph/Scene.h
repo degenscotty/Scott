@@ -2,6 +2,7 @@
 #include "SceneManager.h"
 
 #include "Scott/SceneGraph/GameObject.h"
+#include "Scott/Components/CollisionComponent.h"
 
 namespace Scott
 {
@@ -33,6 +34,7 @@ namespace Scott
 
 		std::string m_Name{};
 		std::vector<GameObject*> m_GameObjects;
+		std::vector<CollisionComponent*> m_CollisionComponents;
 
 		static unsigned int s_IdCounter; 
 	};

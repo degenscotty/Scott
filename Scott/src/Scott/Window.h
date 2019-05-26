@@ -3,7 +3,6 @@
 #include "scpch.h"
 
 #include "Core.h"
-#include "Scott/Events/Event.h"
 
 namespace Scott {
 
@@ -22,11 +21,9 @@ namespace Scott {
 	};
 
 	// Interface representing a desktop system based Window
-	class SCOTT_API Window
+	class Window
 	{
 	public:
-		using EventCallbackFn = std::function<void(Event&)>;
-
 		virtual ~Window() {};
 
 		virtual void OnUpdate() = 0;
@@ -37,7 +34,6 @@ namespace Scott {
 		virtual SDL_Window* GetSDLWindow() = 0;
 
 		// Window attributes
-		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
 		virtual void SetVSync(bool enabled) = 0;
 		virtual bool IsVSync() const = 0;
 
