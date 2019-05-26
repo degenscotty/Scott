@@ -16,10 +16,10 @@ namespace Scott
 		{
 			delete texture.second;
 		}
-		//for (auto font : m_Fonts)
-		//{
-		//	delete font.second;
-		//}
+		for (auto font : m_Fonts)
+		{
+			delete font.second;
+		}
 	}
 
 	Texture2D* ResourceManager::LoadTexture(const std::string& file)

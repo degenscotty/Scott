@@ -41,7 +41,8 @@ project "Scott"
 		"3rdParty/SDL2_ttf/include",
 		"3rdParty/SDL2_image/include",
 		"3rdParty/SDL2/include",
-		"3rdParty/glm/glm"
+		"3rdParty/glm/glm",
+		"3rdParty/vld"
 	}
 	
 	libdirs
@@ -104,7 +105,8 @@ project "Sandbox"
 		"3rdParty/SDL2_ttf/include",
 		"3rdParty/SDL2_image/include",
 		"3rdParty/SDL2/include",
-		"3rdParty/glm/glm"
+		"3rdParty/glm/glm",
+		"3rdParty/vld"
 	}
 	
 	libdirs

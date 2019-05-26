@@ -20,14 +20,6 @@ namespace Scott
 		SetFont(std::make_pair(file, size));
 	}
 
-	TextComponent::~TextComponent()
-	{
-		delete m_pFont;
-		m_pFont = nullptr;
-		delete m_pTexture;
-		m_pTexture = nullptr;
-	}
-
 	void TextComponent::SetText(const std::string& text)
 	{
 		m_Text = text;

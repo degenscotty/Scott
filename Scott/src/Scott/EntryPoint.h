@@ -3,6 +3,7 @@
 #define SDL_MAIN_HANDLED
 
 #include <SDL.h>
+#include <vld.h>
 
 #ifdef SC_PLATFORM_WINDOWS
 

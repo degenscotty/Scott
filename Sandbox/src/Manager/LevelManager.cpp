@@ -30,14 +30,14 @@ namespace Scott
 		m_LevelString += L"..............";
 		m_LevelString += L"..............";
 		m_LevelString += L"..............";
-		m_LevelString += L"...O..........";
+		m_LevelString += L"...O....OOO...";
 		m_LevelString += L"..............";
 		m_LevelString += L"..............";
 		m_LevelString += L"..............";
-		m_LevelString += L"......###.....";
-		m_LevelString += L"..............";
-		m_LevelString += L"..............";
-		m_LevelString += L"..............";
+		m_LevelString += L"......######..";
+		m_LevelString += L"...........#..";
+		m_LevelString += L"...........#..";
+		m_LevelString += L"....OOOO......";
 		m_LevelString += L"..............";
 		m_LevelString += L"..............";
 		m_LevelString += L"..............";
@@ -87,6 +87,7 @@ namespace Scott
 
 	LevelManager::~LevelManager()
 	{
+		SDL_DestroyTexture(m_pBlackTexture);
 	}
 
 	wchar_t LevelManager::GetTile(int x, int y)

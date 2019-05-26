@@ -40,17 +40,20 @@ namespace Scott
 			}
 		}
 
-		for (int i{ 0 }; i != m_CollisionComponents.size() - 1; ++i)
+		if (m_CollisionComponents.size() > 1)
 		{
-			for (int j{ i + 1 }; j < m_CollisionComponents.size(); ++j)
+			for (int i{ 0 }; i != m_CollisionComponents.size() - 1; ++i)
 			{
-				if (m_CollisionComponents[i]->IsColliding(m_CollisionComponents[j]->GetRect()))
+				for (int j{ i + 1 }; j < m_CollisionComponents.size(); ++j)
 				{
-					GameObject* pGameObject = m_CollisionComponents[i]->GetGameObject();
-					pGameObject->m_CollisionCallBack(*m_CollisionComponents[j]->GetGameObject());
+					if (m_CollisionComponents[i]->IsColliding(m_CollisionComponents[j]->GetRect()))
+					{
+						GameObject* pGameObject = m_CollisionComponents[i]->GetGameObject();
+						pGameObject->m_CollisionCallBack(*m_CollisionComponents[j]->GetGameObject());
 
-					pGameObject = m_CollisionComponents[j]->GetGameObject();
-					pGameObject->m_CollisionCallBack(*m_CollisionComponents[i]->GetGameObject());
+						pGameObject = m_CollisionComponents[j]->GetGameObject();
+						pGameObject->m_CollisionCallBack(*m_CollisionComponents[i]->GetGameObject());
+					}
 				}
 			}
 		}

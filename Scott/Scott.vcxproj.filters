@@ -16,9 +16,6 @@
     <Filter Include="Scott\Components">
       <UniqueIdentifier>{E7B8020B-D3B1-215D-FCE3-06E2E83B0169}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scott\Events">
-      <UniqueIdentifier>{B666A62C-A2C9-35D1-4B4F-6E8737910154}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scott\Helpers">
       <UniqueIdentifier>{D4C53981-4086-B5B7-09C1-FE347540FA93}</UniqueIdentifier>
     </Filter>
@@ -50,6 +47,9 @@
       <Filter>Scott</Filter>
     </ClInclude>
     <ClInclude Include="src\Scott\Components\BaseComponent.h">
+      <Filter>Scott\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scott\Components\CollisionComponent.h">
       <Filter>Scott\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\Scott\Components\Components.h">
@@ -122,7 +122,6 @@
       <Filter>Scott</Filter>
     </ClInclude>
     <ClInclude Include="src\scpch.h" />
-    <ClInclude Include="src\Scott\Components\CollisionComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\SDL\ImGuiOpenGLRenderer.cpp">
@@ -144,6 +143,9 @@
       <Filter>Scott</Filter>
     </ClCompile>
     <ClCompile Include="src\Scott\Components\BaseComponent.cpp">
+      <Filter>Scott\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scott\Components\CollisionComponent.cpp">
       <Filter>Scott\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\Scott\Components\SpriteComponent.cpp">
@@ -189,6 +191,5 @@
       <Filter>Scott\SceneGraph</Filter>
     </ClCompile>
     <ClCompile Include="src\scpch.cpp" />
-    <ClCompile Include="src\Scott\Components\CollisionComponent.cpp" />
   </ItemGroup>
 </Project>

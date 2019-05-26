@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SC_PLATFORM_WINDOWS;SC_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Scott\vendor\spdlog\include;..\Scott\vendor\imgui;..\Scott\src;..\3rdParty\SDL2_ttf\include;..\3rdParty\SDL2_image\include;..\3rdParty\SDL2\include;..\3rdParty\glm\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Scott\vendor\spdlog\include;..\Scott\vendor\imgui;..\Scott\src;..\3rdParty\SDL2_ttf\include;..\3rdParty\SDL2_image\include;..\3rdParty\SDL2\include;..\3rdParty\glm\glm;..\3rdParty\vld;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -96,7 +96,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SC_PLATFORM_WINDOWS;SC_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Scott\vendor\spdlog\include;..\Scott\vendor\imgui;..\Scott\src;..\3rdParty\SDL2_ttf\include;..\3rdParty\SDL2_image\include;..\3rdParty\SDL2\include;..\3rdParty\glm\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Scott\vendor\spdlog\include;..\Scott\vendor\imgui;..\Scott\src;..\3rdParty\SDL2_ttf\include;..\3rdParty\SDL2_image\include;..\3rdParty\SDL2\include;..\3rdParty\glm\glm;..\3rdParty\vld;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -117,7 +117,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SC_PLATFORM_WINDOWS;SC_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Scott\vendor\spdlog\include;..\Scott\vendor\imgui;..\Scott\src;..\3rdParty\SDL2_ttf\include;..\3rdParty\SDL2_image\include;..\3rdParty\SDL2\include;..\3rdParty\glm\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Scott\vendor\spdlog\include;..\Scott\vendor\imgui;..\Scott\src;..\3rdParty\SDL2_ttf\include;..\3rdParty\SDL2_image\include;..\3rdParty\SDL2\include;..\3rdParty\glm\glm;..\3rdParty\vld;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>

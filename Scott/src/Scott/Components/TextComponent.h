@@ -11,7 +11,7 @@ namespace Scott
 	{
 	public:
 		TextComponent(const std::string& file, const std::string& text, unsigned int size);
-		~TextComponent();
+		virtual ~TextComponent() = default;
 
 		void Initialize() override {};
 		void Update() override;
