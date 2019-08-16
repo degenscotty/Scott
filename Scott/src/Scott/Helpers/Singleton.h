@@ -2,7 +2,7 @@
 namespace Scott
 {
 	template <typename T>
-	class Singleton
+	class Singleton abstract
 	{
 	public:
 		static T& GetInstance()
@@ -12,6 +12,7 @@ namespace Scott
 		}
 
 		virtual ~Singleton() = default;
+
 		Singleton(const Singleton& other) = delete;
 		Singleton(Singleton&& other) = delete;
 		Singleton& operator=(const Singleton& other) = delete;
